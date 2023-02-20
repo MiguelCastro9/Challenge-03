@@ -4,6 +4,7 @@ import com.api.model.ContatoModel;
 import com.api.model.EnderecoModel;
 import com.api.model.FisicoModel;
 import com.api.model.PacienteModel;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import java.util.List;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +16,7 @@ import org.hibernate.validator.constraints.br.CPF;
  *
  * @author Miguel Castro
  */
+@Schema(name = "paciente Request DTO")
 public class PacienteRequestDto {
     
     @NotBlank(message = "Nome é obrigatório.")
@@ -31,7 +33,6 @@ public class PacienteRequestDto {
     @NotBlank(message = "Físico é obrigatório.")
     private FisicoModel fisico;
     
-    //Método para converter entidade em DTO e salvar.
     public PacienteModel converterPacienteDtoParaEntidade() {
         return new PacienteModel(nome, cpf, data_nascimento, endereco, contato, fisico);
     }

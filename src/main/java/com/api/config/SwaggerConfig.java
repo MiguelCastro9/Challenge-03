@@ -17,7 +17,7 @@ public class SwaggerConfig {
 
         return new OpenAPI()
                 .info(new Info()
-                        .title("API Service")
+                        .title("API Doação de Sangue")
                         .version("v1")
                         .description("WK Technology Challenge"));
     }

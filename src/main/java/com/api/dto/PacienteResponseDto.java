@@ -4,6 +4,7 @@ import com.api.model.ContatoModel;
 import com.api.model.EnderecoModel;
 import com.api.model.FisicoModel;
 import com.api.model.PacienteModel;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  *
  * @author Miguel Castro
  */
+@Schema(name = "paciente Response DTO")
 public class PacienteResponseDto {
 
     private Long id;
@@ -31,7 +33,6 @@ public class PacienteResponseDto {
         this.fisico = fisico;
     }
 
-    //Método para converter entidade em DTO.
     public static PacienteResponseDto converterEntidadeParaPacienteDto(PacienteModel pacienteModel) {
         return new PacienteResponseDto(pacienteModel.getId(), pacienteModel.getNome(), pacienteModel.getCpf(),
                 pacienteModel.getData_nascimento(), pacienteModel.getEndereco(), pacienteModel.getContato(),
