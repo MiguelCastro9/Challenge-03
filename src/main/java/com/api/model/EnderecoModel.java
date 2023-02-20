@@ -3,9 +3,9 @@ package com.api.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +20,7 @@ public class EnderecoModel implements Serializable {
 
     @Id
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -36,21 +37,16 @@ public class EnderecoModel implements Serializable {
 
     private String complemento;
 
-    @ManyToOne
-    @JoinColumn(name = "paciente_id")
-    private PacienteModel paciente;
-
     public EnderecoModel() {
     }
 
-    public EnderecoModel(Long id, String rua, int numero, String bairro, String cidade, String complemento, PacienteModel paciente) {
+    public EnderecoModel(Long id, String rua, int numero, String bairro, String cidade, String complemento) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.complemento = complemento;
-        this.paciente = paciente;
     }
 
     public Long getId() {
@@ -99,13 +95,5 @@ public class EnderecoModel implements Serializable {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
-    }
-
-    public PacienteModel getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(PacienteModel paciente) {
-        this.paciente = paciente;
     }
 }

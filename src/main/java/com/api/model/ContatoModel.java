@@ -3,6 +3,8 @@ package com.api.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +22,7 @@ public class ContatoModel implements Serializable {
 
     @Id
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -31,19 +34,14 @@ public class ContatoModel implements Serializable {
     @Column(nullable = false)
     private String numero;
 
-    @ManyToOne
-    @JoinColumn(name = "paciente_id")
-    private PacienteModel paciente;
-
     public ContatoModel() {
     }
 
-    public ContatoModel(Long id, String email, String tipo_contato, String numero, PacienteModel paciente) {
+    public ContatoModel(Long id, String email, String tipo_contato, String numero) {
         this.id = id;
         this.email = email;
         this.tipo_contato = tipo_contato;
         this.numero = numero;
-        this.paciente = paciente;
     }
 
     public Long getId() {
@@ -76,13 +74,5 @@ public class ContatoModel implements Serializable {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public PacienteModel getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(PacienteModel paciente) {
-        this.paciente = paciente;
     }
 }

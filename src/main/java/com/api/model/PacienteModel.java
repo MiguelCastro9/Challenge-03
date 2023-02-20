@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,6 +28,7 @@ public class PacienteModel implements Serializable {
 
     @Id
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -35,10 +38,10 @@ public class PacienteModel implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date data_nascimento;
 
-    @OneToMany(mappedBy = "paciente", targetEntity = EnderecoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", targetEntity = EnderecoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<EnderecoModel> endereco;
 
-    @OneToMany(mappedBy = "paciente", targetEntity = ContatoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", targetEntity = ContatoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ContatoModel> contato;
 
     @OneToOne(targetEntity = FisicoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
