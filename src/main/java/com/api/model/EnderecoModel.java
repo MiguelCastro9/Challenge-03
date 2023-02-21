@@ -40,7 +40,7 @@ public class EnderecoModel implements Serializable {
     public EnderecoModel() {
     }
 
-    public EnderecoModel(Long id, String rua, int numero, String bairro, String cidade, String complemento) {
+    public EnderecoModel(Long id, String rua, Integer numero, String bairro, String cidade, String complemento) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
@@ -65,11 +65,11 @@ public class EnderecoModel implements Serializable {
         this.rua = rua;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
