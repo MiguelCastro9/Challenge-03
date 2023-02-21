@@ -3,7 +3,7 @@
  */
 
 CREATE TABLE paciente (
-    id bigint NOT NULL, 
+    id BIGINT NOT NULL AUTO_INCREMENT, 
     cpf VARCHAR(255), 
     data_nascimento DATE, 
     nome VARCHAR(255), 

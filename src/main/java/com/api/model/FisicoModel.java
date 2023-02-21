@@ -24,10 +24,10 @@ public class FisicoModel implements Serializable {
     private Long id;
 
     @Column(nullable = false)
-    private double altura;
+    private Double altura;
 
     @Column(nullable = false)
-    private double peso;
+    private Double peso;
 
     @Column(nullable = false)
     private String tipo_sanguineo;
@@ -35,7 +35,7 @@ public class FisicoModel implements Serializable {
     public FisicoModel() {
     }
 
-    public FisicoModel(Long id, double altura, double peso, String tipo_sanguineo) {
+    public FisicoModel(Long id, Double altura, Double peso, String tipo_sanguineo) {
         this.id = id;
         this.altura = altura;
         this.peso = peso;
@@ -54,7 +54,7 @@ public class FisicoModel implements Serializable {
         return altura;
     }
 
-    public void setAltura(double altura) {
+    public void setAltura(Double altura) {
         this.altura = altura;
     }
 
@@ -62,7 +62,7 @@ public class FisicoModel implements Serializable {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Double peso) {
         this.peso = peso;
     }
 
@@ -74,4 +74,8 @@ public class FisicoModel implements Serializable {
         this.tipo_sanguineo = tipo_sanguineo;
     }
 
+    @Override
+    public String toString() {
+        return "FisicoModel{" + "id=" + id + ", altura=" + altura + ", peso=" + peso + ", tipo_sanguineo=" + tipo_sanguineo + '}';
+    }
 }

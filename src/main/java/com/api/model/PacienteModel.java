@@ -44,7 +44,7 @@ public class PacienteModel implements Serializable {
     @OneToMany(mappedBy = "id", targetEntity = ContatoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ContatoModel> contato;
 
-    @OneToOne(targetEntity = FisicoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = FisicoModel.class, cascade = CascadeType.ALL)
     private FisicoModel fisico;
 
     public PacienteModel() {

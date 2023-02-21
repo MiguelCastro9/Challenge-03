@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -74,5 +72,10 @@ public class ContatoModel implements Serializable {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    @Override
+    public String toString() {
+        return "ContatoModel{" + "id=" + id + ", email=" + email + ", tipo_contato=" + tipo_contato + ", numero=" + numero + '}';
     }
 }

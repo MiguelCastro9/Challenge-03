@@ -27,7 +27,7 @@ public class EnderecoModel implements Serializable {
     private String rua;
 
     @Column(nullable = false)
-    private int numero;
+    private Integer numero;
 
     @Column(nullable = false)
     private String bairro;
@@ -95,5 +95,10 @@ public class EnderecoModel implements Serializable {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    @Override
+    public String toString() {
+        return "EnderecoModel{" + "id=" + id + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", complemento=" + complemento + '}';
     }
 }
