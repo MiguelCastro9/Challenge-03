@@ -1,5 +1,6 @@
 package com.api.model;
 
+import com.api.enums.TipoSanguineoEnum;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,12 +31,12 @@ public class FisicoModel implements Serializable {
     private Double peso;
 
     @Column(nullable = false)
-    private String tipo_sanguineo;
+    private TipoSanguineoEnum tipo_sanguineo;
 
     public FisicoModel() {
     }
 
-    public FisicoModel(Long id, Double altura, Double peso, String tipo_sanguineo) {
+    public FisicoModel(Long id, Double altura, Double peso, TipoSanguineoEnum tipo_sanguineo) {
         this.id = id;
         this.altura = altura;
         this.peso = peso;
@@ -66,11 +67,11 @@ public class FisicoModel implements Serializable {
         this.peso = peso;
     }
 
-    public String getTipo_sanguineo() {
+    public TipoSanguineoEnum getTipo_sanguineo() {
         return tipo_sanguineo;
     }
 
-    public void setTipo_sanguineo(String tipo_sanguineo) {
+    public void setTipo_sanguineo(TipoSanguineoEnum tipo_sanguineo) {
         this.tipo_sanguineo = tipo_sanguineo;
     }
 
