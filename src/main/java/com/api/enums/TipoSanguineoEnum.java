@@ -6,26 +6,12 @@ package com.api.enums;
  */
 public enum TipoSanguineoEnum {
 
-    A_POSITIVO("A+"),
-    A_NEGATIVO("A-"),
-    B_POSITIVO("B+"),
-    B_NEGATIVO("B-"),
-    A_B_POSITIVO("AB+"),
-    A_B_NEGATIVO("AB-"),
-    O_POSITIVO("O+"),
-    O_NEGATIVO("O-");
-
-    private String tipo_sanguineo;
-
-    private TipoSanguineoEnum(String tipo_sanguineo) {
-        this.tipo_sanguineo = tipo_sanguineo;
-    }
-
-    public String getTipo_sanguineo() {
-        return tipo_sanguineo;
-    }
-
-    public void setTipo_sanguineo(String tipo_sanguineo) {
-        this.tipo_sanguineo = tipo_sanguineo;
-    }
+    A_POSITIVO,
+    A_NEGATIVO,
+    B_POSITIVO,
+    B_NEGATIVO,
+    A_B_POSITIVO,
+    A_B_NEGATIVO,
+    O_POSITIVO,
+    O_NEGATIVO;
 }
