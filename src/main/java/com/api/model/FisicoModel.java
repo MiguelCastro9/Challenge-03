@@ -4,6 +4,8 @@ import com.api.enums.TipoSanguineoEnum;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +33,7 @@ public class FisicoModel implements Serializable {
     private Double peso;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoSanguineoEnum tipo_sanguineo;
 
     public FisicoModel() {
