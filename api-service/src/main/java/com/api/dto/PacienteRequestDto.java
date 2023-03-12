@@ -26,7 +26,6 @@ public class PacienteRequestDto {
     @CPF(message = "CPF mal formatado.")
     private String cpf;
     @NotNull(message = "Data de nascimento é obrigatório.")
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date data_nascimento;
     @NotNull(message = "Endereço é obrigatório.")
     private List<EnderecoModel> endereco;

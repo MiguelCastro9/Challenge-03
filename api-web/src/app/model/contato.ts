@@ -1,9 +1,7 @@
-export class Contato {
+export interface Contato {
 
-  id!: number;
-  email!: string;
-  tipo_contato!: string;
-  numero!: string;
+  email: string;
+  tipo_contato: string;
+  numero: string;
 
-  constructor() {}
 }

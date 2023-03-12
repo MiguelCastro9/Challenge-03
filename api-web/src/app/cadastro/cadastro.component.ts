@@ -1,17 +1,44 @@
 import { Paciente } from './../model/paciente';
+import { CadastroService } from './../service/cadastro.service';
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
+
+
 export class CadastroComponent implements OnInit {
 
-  paciente = new Paciente();
+  paciente: Paciente = {
+    id: 0,
+    nome: '',
+    cpf: '',
+    data_nascimento: new Date(),
+    contato: [{
+      email: '',
+      tipo_contato: '',
+      numero: ''
+    }],
+    endereco: [{
+      rua: '',
+      numero: 0,
+      bairro: '',
+      estado: '',
+      complemento: ''
+    }],
+    fisico: {
+      altura: 0,
+      peso: 0,
+      tipo_sanguineo: ''
+    }
+  };
+
   alertMensagem = '';
 
-  constructor() { }
+  constructor(private cadastroService: CadastroService) { }
 
   ngOnInit(): void {
   }
@@ -28,30 +55,68 @@ export class CadastroComponent implements OnInit {
     if (!this.paciente.data_nascimento) {
       this.alertMensagem = 'Campo data de nascimento é obrigatório.';
     }
-    if (!this.paciente.endereco.rua) {
-      this.alertMensagem = 'Campo rua é obrigatório.';
+    let emailsPreenchidos = true;
+    this.paciente.contato.forEach(contato => {
+      if (!contato.email || !contato.email.match("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}")) {
+        emailsPreenchidos = false;
+      }
+    });
+    if (!emailsPreenchidos) {
+      this.alertMensagem = 'Todos os campos e-mails dos contatos são obrigatórios.';
     }
-    if (!this.paciente.endereco.numero) {
-      this.alertMensagem = 'Campo número é obrigatório.';
+    let tipoContatoPreenchidos = true;
+    this.paciente.contato.forEach(contato => {
+      if (!contato.tipo_contato) {
+        tipoContatoPreenchidos = false;
+      }
+    });
+    if (!tipoContatoPreenchidos) {
+      this.alertMensagem = 'Todos os campos tipo de contatos são obrigatórios.';
     }
-    if (!this.paciente.endereco.bairro) {
-      this.alertMensagem = 'Campo bairro é obrigatório.';
+    let numerosContatoPreenchidos = true;
+    this.paciente.contato.forEach(contato => {
+      if (!contato.numero) {
+        numerosContatoPreenchidos = false;
+      }
+    });
+    if (!numerosContatoPreenchidos) {
+      this.alertMensagem = 'Todos os campos número de contatos são obrigatórios.';
     }
-    if (!this.paciente.endereco.estado) {
-      this.alertMensagem = 'Campo estado é obrigatório.';
+    let ruaPreenchidas = true;
+    this.paciente.endereco.forEach(endereco => {
+      if (!endereco.rua) {
+        ruaPreenchidas = false;
+      }
+    });
+    if (!ruaPreenchidas) {
+      this.alertMensagem = 'Todos os campos rua são obrigatórios.';
     }
-    if (!this.paciente.contato.email) {
-      this.alertMensagem = 'Campo e-mail é obrigatório.';
+    let numerosEnderecoPreenchidos = true;
+    this.paciente.endereco.forEach(endereco => {
+      if (!endereco.numero) {
+        numerosEnderecoPreenchidos = false;
+      }
+    });
+    if (!numerosEnderecoPreenchidos) {
+      this.alertMensagem = 'Todos os campos número de endereços são obrigatórios.';
     }
-    if (!this.paciente.contato.email.match("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}")) {
-      this.alertMensagem = 'Campo e-mail inválido.';
-      return false;
+    let bairroPreenchidos = true;
+    this.paciente.endereco.forEach(endereco => {
+      if (!endereco.bairro) {
+        bairroPreenchidos = false;
+      }
+    });
+    if (!bairroPreenchidos) {
+      this.alertMensagem = 'Todos os campos bairro são obrigatórios.';
     }
-    if (!this.paciente.contato.tipo_contato) {
-      this.alertMensagem = 'Campo tipo de contato é obrigatório.';
-    }
-    if (!this.paciente.contato.numero) {
-      this.alertMensagem = 'Campo número é obrigatório.';
+    let estadoPreenchidos = true;
+    this.paciente.endereco.forEach(endereco => {
+      if (!endereco.estado) {
+        estadoPreenchidos = false;
+      }
+    });
+    if (!estadoPreenchidos) {
+      this.alertMensagem = 'Todos os campos estado são obrigatórios.';
     }
     if (!this.paciente.fisico.altura) {
       this.alertMensagem = 'Campo altura é obrigatório.';
@@ -65,4 +130,16 @@ export class CadastroComponent implements OnInit {
   return true;
   }
 
+  salvar(paciente: Paciente) {
+    if (!this.validarFormulario()) {
+      return;
+    }
+    console.log(paciente);
+
+
+    this.cadastroService.salvar(paciente)
+    .subscribe(dados => {}, (erro: HttpErrorResponse) => {
+      this.alertMensagem = erro.name;
+    });
+  }
 }

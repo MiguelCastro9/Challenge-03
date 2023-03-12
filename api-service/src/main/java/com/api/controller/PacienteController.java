@@ -45,6 +45,7 @@ public class PacienteController {
     @PostMapping
     @Operation(description = "Salvar")
     public ResponseEntity<PacienteResponseDto> salvar(@Valid @RequestBody PacienteRequestDto pacienteRequestDto) {
+        System.out.println(pacienteRequestDto);
         PacienteModel pacienteModel = pacienteService.salvar(pacienteRequestDto.converterPacienteDtoParaEntidade());
         return new ResponseEntity<PacienteResponseDto>(PacienteResponseDto.converterEntidadeParaPacienteDto(pacienteModel), HttpStatus.CREATED);
     }

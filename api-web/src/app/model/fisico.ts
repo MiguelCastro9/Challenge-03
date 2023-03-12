@@ -1,9 +1,7 @@
-export class Fisico {
+export interface Fisico {
 
-  id!: number;
-  altura!: number;
-  peso!: number;
-  tipo_sanguineo!: string;
+  altura: number;
+  peso: number;
+  tipo_sanguineo: string;
 
-  constructor() {}
 }
