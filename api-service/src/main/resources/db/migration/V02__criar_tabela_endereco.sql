@@ -5,7 +5,7 @@
 CREATE TABLE endereco (
     id BIGINT NOT NULL AUTO_INCREMENT, 
     bairro VARCHAR(255) NOT NULL, 
-    cidade VARCHAR(255) NOT NULL, 
+    estado VARCHAR(255) NOT NULL, 
     complemento VARCHAR(255), 
     numero INTEGER NOT NULL, 
     rua VARCHAR(255) NOT NULL, 

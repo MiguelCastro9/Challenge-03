@@ -33,19 +33,19 @@ public class EnderecoModel implements Serializable {
     private String bairro;
 
     @Column(nullable = false)
-    private String cidade;
+    private String estado;
 
     private String complemento;
 
     public EnderecoModel() {
     }
 
-    public EnderecoModel(Long id, String rua, Integer numero, String bairro, String cidade, String complemento) {
+    public EnderecoModel(Long id, String rua, Integer numero, String bairro, String estado, String complemento) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
-        this.cidade = cidade;
+        this.estado = estado;
         this.complemento = complemento;
     }
 
@@ -81,12 +81,12 @@ public class EnderecoModel implements Serializable {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getComplemento() {
@@ -99,6 +99,6 @@ public class EnderecoModel implements Serializable {
 
     @Override
     public String toString() {
-        return "EnderecoModel{" + "id=" + id + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", complemento=" + complemento + '}';
+        return "EnderecoModel{" + "id=" + id + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", estado=" + estado + ", complemento=" + complemento + '}';
     }
 }

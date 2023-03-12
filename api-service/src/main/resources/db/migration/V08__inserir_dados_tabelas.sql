@@ -26,16 +26,16 @@ insert into contato (email, numero, tipo_contato) values ('fknoton7@multiply.com
 insert into contato (email, numero, tipo_contato) values ('xdonati8@geocities.com', '(199) 9908338', 'Telefone fixo');
 insert into contato (email, numero, tipo_contato) values ('hcampe9@hc360.com', '(542) 6520986', 'Celular');
 
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('53 Shopko Way', 'Camp Diable', 'Room 483', 104, '5176 Continental Road');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('0913 Stephen Circle', 'Tangjian', 'Suite 21', 143, '0 Mosinee Pass');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('285 Pine View Terrace', 'Midrand', '9th Floor', 181, '10 Barby Junction');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('8 Bartelt Court', 'Camajuaní', '20th Floor', 143, '1999 Cambridge Crossing');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('2940 Westport Alley', 'Lianghekou', 'Room 1340', 169, '7012 Onsgard Trail');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('342 Mendota Circle', 'Österbybruk', 'Room 1795', 185, '85 1st Parkway');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('505 Schurz Park', 'Ibarra', 'Apt 1675', 165, '26714 Vernon Street');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('60477 Ridge Oak Alley', 'Klemunan', 'Apt 1798', 123, '91668 School Trail');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('833 Sunfield Alley', 'Yangong', 'Suite 86', 124, '2 Esker Trail');
-insert into endereco (bairro, cidade, complemento, numero, rua) values ('23360 Hayes Parkway', 'Aqtoghay', 'Apt 740', 135, '4 Atwood Point');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('53 Shopko Way', 'Camp Diable', 'Room 483', 104, '5176 Continental Road');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('0913 Stephen Circle', 'Tangjian', 'Suite 21', 143, '0 Mosinee Pass');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('285 Pine View Terrace', 'Midrand', '9th Floor', 181, '10 Barby Junction');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('8 Bartelt Court', 'Camajuaní', '20th Floor', 143, '1999 Cambridge Crossing');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('2940 Westport Alley', 'Lianghekou', 'Room 1340', 169, '7012 Onsgard Trail');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('342 Mendota Circle', 'Österbybruk', 'Room 1795', 185, '85 1st Parkway');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('505 Schurz Park', 'Ibarra', 'Apt 1675', 165, '26714 Vernon Street');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('60477 Ridge Oak Alley', 'Klemunan', 'Apt 1798', 123, '91668 School Trail');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('833 Sunfield Alley', 'Yangong', 'Suite 86', 124, '2 Esker Trail');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('23360 Hayes Parkway', 'Aqtoghay', 'Apt 740', 135, '4 Atwood Point');
 
 insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('595.930.300-00', '1983-07-05', 1, 'Rosalinda Warder');
 insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('059.496.230-70', '1991-06-28', 2, 'Rhodia Jacobsson');
