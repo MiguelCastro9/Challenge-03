@@ -37,6 +37,7 @@ export class CadastroComponent implements OnInit {
   };
 
   alertMensagem = '';
+  successMensagem = '';
 
   constructor(private cadastroService: CadastroService) { }
 
@@ -134,12 +135,39 @@ export class CadastroComponent implements OnInit {
     if (!this.validarFormulario()) {
       return;
     }
-    console.log(paciente);
-
-
     this.cadastroService.salvar(paciente)
-    .subscribe(dados => {}, (erro: HttpErrorResponse) => {
-      this.alertMensagem = erro.name;
+    .subscribe(dados => {
+      this.successMensagem = 'Cadastro realizado com sucesso!';
+      this.paciente = {
+        id: 0,
+        nome: '',
+        cpf: '',
+        data_nascimento: new Date(),
+        contato: [{
+          email: '',
+          tipo_contato: '',
+          numero: ''
+        }],
+        endereco: [{
+          rua: '',
+          numero: 0,
+          bairro: '',
+          estado: '',
+          complemento: ''
+        }],
+        fisico: {
+          altura: 0,
+          peso: 0,
+          tipo_sanguineo: ''
+        }
+      };
+    },
+    (erro: HttpErrorResponse) => {
+      if (erro.error && erro.error.length > 0) {
+        this.alertMensagem = erro.error[0].mensagemUsuario;
+      } else {
+        this.alertMensagem = erro.message;
+      }
     });
   }
 }
