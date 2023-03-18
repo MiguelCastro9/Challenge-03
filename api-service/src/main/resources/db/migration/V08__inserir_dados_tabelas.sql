@@ -15,27 +15,27 @@ insert into fisico (altura, peso, tipo_sanguineo) values (1.78, 75, 'O_NEGATIVO'
 insert into fisico (altura, peso, tipo_sanguineo) values (1.73, 87, 'A_POSITIVO');
 insert into fisico (altura, peso, tipo_sanguineo) values (1.80, 130, 'A_POSITIVO');
 
-insert into contato (email, numero, tipo_contato) values ('zkilius0@printfriendly.com', '(137) 1316444', 'Celular');
-insert into contato (email, numero, tipo_contato) values ('dsavaage1@desdev.cn', '(324) 2826938', 'Telefone fixo');
-insert into contato (email, numero, tipo_contato) values ('ctimmons2@issuu.com', '(823) 8008533', 'Celular');
-insert into contato (email, numero, tipo_contato) values ('dbullant3@ow.ly', '(668) 8008754', 'Telefone fixo');
-insert into contato (email, numero, tipo_contato) values ('rciric4@newsvine.com', '(419) 4995933', 'Celular');
-insert into contato (email, numero, tipo_contato) values ('tiliff5@ameblo.jp', '(654) 5377937', 'Telefone fixo');
-insert into contato (email, numero, tipo_contato) values ('ctwigger6@over-blog.com', '(572) 7019352', 'Telefone fixo');
-insert into contato (email, numero, tipo_contato) values ('fknoton7@multiply.com', '(607) 9111314', 'Celular');
-insert into contato (email, numero, tipo_contato) values ('xdonati8@geocities.com', '(199) 9908338', 'Telefone fixo');
-insert into contato (email, numero, tipo_contato) values ('hcampe9@hc360.com', '(542) 6520986', 'Celular');
+insert into contato (email, numero, tipo_contato) values ('zkilius0@printfriendly.com', '(11) 95834-5937', 'Celular');
+insert into contato (email, numero, tipo_contato) values ('dsavaage1@desdev.cn', '(12) 1836-5637', 'Telefone fixo');
+insert into contato (email, numero, tipo_contato) values ('ctimmons2@issuu.com', '(16) 94928-5837', 'Celular');
+insert into contato (email, numero, tipo_contato) values ('dbullant3@ow.ly', '(18) 9484-9384', 'Telefone fixo');
+insert into contato (email, numero, tipo_contato) values ('rciric4@newsvine.com', '(11) 95847-8572', 'Celular');
+insert into contato (email, numero, tipo_contato) values ('tiliff5@ameblo.jp', '(48) 5938-1847', 'Telefone fixo');
+insert into contato (email, numero, tipo_contato) values ('ctwigger6@over-blog.com', '(17) 93759-2828', 'Celular');
+insert into contato (email, numero, tipo_contato) values ('fknoton7@multiply.com', '(27) 95837-4739', 'Celular');
+insert into contato (email, numero, tipo_contato) values ('xdonati8@geocities.com', '(11) 92177-5849', 'Celular');
+insert into contato (email, numero, tipo_contato) values ('hcampe9@hc360.com', '(58) 94728-8492', 'Celular');
 
-insert into endereco (bairro, estado, complemento, numero, rua) values ('53 Shopko Way', 'Camp Diable', 'Room 483', 104, '5176 Continental Road');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('0913 Stephen Circle', 'Tangjian', 'Suite 21', 143, '0 Mosinee Pass');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('285 Pine View Terrace', 'Midrand', '9th Floor', 181, '10 Barby Junction');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('8 Bartelt Court', 'Camajuaní', '20th Floor', 143, '1999 Cambridge Crossing');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('2940 Westport Alley', 'Lianghekou', 'Room 1340', 169, '7012 Onsgard Trail');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('342 Mendota Circle', 'Österbybruk', 'Room 1795', 185, '85 1st Parkway');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('505 Schurz Park', 'Ibarra', 'Apt 1675', 165, '26714 Vernon Street');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('60477 Ridge Oak Alley', 'Klemunan', 'Apt 1798', 123, '91668 School Trail');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('833 Sunfield Alley', 'Yangong', 'Suite 86', 124, '2 Esker Trail');
-insert into endereco (bairro, estado, complemento, numero, rua) values ('23360 Hayes Parkway', 'Aqtoghay', 'Apt 740', 135, '4 Atwood Point');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('53 Shopko Way', 'São Paulo', 'Room 483', 104, '5176 Continental Road');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('0913 Stephen Circle', 'Rio de Janeiro', 'Suite 21', 143, '0 Mosinee Pass');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('285 Pine View Terrace', 'Rio Grande do Sul', '9th Floor', 181, '10 Barby Junction');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('8 Bartelt Court', 'São Paulo', '20th Floor', 143, '1999 Cambridge Crossing');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('2940 Westport Alley', 'São Paulo', 'Room 1340', 169, '7012 Onsgard Trail');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('342 Mendota Circle', 'Alagoas', 'Room 1795', 185, '85 1st Parkway');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('505 Schurz Park', 'Pará', 'Apt 1675', 165, '26714 Vernon Street');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('60477 Ridge Oak Alley', 'Bahia', 'Apt 1798', 123, '91668 School Trail');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('833 Sunfield Alley', 'Ceará', 'Suite 86', 124, '2 Esker Trail');
+insert into endereco (bairro, estado, complemento, numero, rua) values ('23360 Hayes Parkway', 'Acre', 'Apt 740', 135, '4 Atwood Point');
 
 insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('595.930.300-00', '1983-07-05', 1, 'Rosalinda Warder');
 insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('059.496.230-70', '1991-06-28', 2, 'Rhodia Jacobsson');
