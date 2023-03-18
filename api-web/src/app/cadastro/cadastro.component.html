@@ -1,131 +1,148 @@
 <app-menu></app-menu>
 <br><br>
 <div class="container">
-  <h5>Preenchimento:</h5>
   <div *ngIf="alertMensagem" class="alert alert-danger" role="alert">
     <span>{{alertMensagem}}</span>
  </div>
  <div *ngIf="successMensagem" class="alert alert-success" role="alert">
-  <span>{{successMensagem}}</span>
-</div>
-  <form>
-    <hr>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="nome">* Nome completo:</label>
-        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="paciente.nome">
+    <span>{{successMensagem}}</span>
+ </div>
+   <hr>
+   <h5 class="text-center">Dados pessoais:</h5>
+   <form>
+      <hr>
+      <div class="form-row">
+         <div class="form-group col-md-4">
+            <label for="nome">* Nome completo:</label>
+            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="paciente.nome" maxlength="35">
+         </div>
+         <div class="form-group col-md-4">
+            <label for="cpf">* CPF:</label>
+            <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="paciente.cpf" mask="000.000.000-00" maxlength="14">
+         </div>
+         <div class="form-group col-md-4">
+            <label for="data_nascimento">* Data de nascimento:</label>
+            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" [(ngModel)]="paciente.data_nascimento">
+         </div>
       </div>
-      <div class="form-group col-md-4">
-        <label for="cpf">* CPF:</label>
-        <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="paciente.cpf">
+      <div class="form-row">
+         <div class="form-group col-md-4">
+            <label for="email">* E-mail:</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="paciente.contato[0].email" maxlength="35">
+         </div>
+         <div class="form-group col-md-4">
+            <label for="tipo_contato">* Tipo de contato:</label>
+            <select id="tipo_contato" class="form-control" name="tipo_contato" [(ngModel)]="paciente.contato[0].tipo_contato">
+            <option selected>--</option>
+            <option>Celular</option>
+            <option>Telefone</option>
+            </select>
+         </div>
+         <div class="form-group col-md-4">
+            <label for="numero_contato">* Número:</label>
+            <div *ngIf="paciente.contato[0].tipo_contato == ''">
+               <input type="text" class="form-control" id="numero_contato" name="numero_contato" [(ngModel)]="paciente.contato[0].numero" mask="(00) 00000-0000" maxlength="15">
+            </div>
+            <div *ngIf="paciente.contato[0].tipo_contato == 'Celular'">
+               <input type="text" class="form-control" id="numero_contato" name="numero_contato" [(ngModel)]="paciente.contato[0].numero" mask="(00) 00000-0000" maxlength="15">
+            </div>
+            <div *ngIf="paciente.contato[0].tipo_contato == 'Telefone'">
+               <input type="text" class="form-control" id="numero_contato" name="numero_contato" [(ngModel)]="paciente.contato[0].numero" mask="0000-0000" maxlength="9">
+            </div>
+         </div>
       </div>
-      <div class="form-group col-md-4">
-        <label for="data_nascimento">* Data de nascimento:</label>
-        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" [(ngModel)]="paciente.data_nascimento">
+      <br>
+      <hr>
+      <h5 class="text-center">Dados de endereço:</h5>
+      <hr>
+      <div class="form-row">
+         <div class="form-group col-md-4">
+            <label for="rua">* Rua:</label>
+            <input type="text" class="form-control" id="rua" name="rua" [(ngModel)]="paciente.endereco[0].rua" maxlength="30">
+         </div>
+         <div class="form-group col-md-4">
+            <label for="numero_endereco">* Número:</label>
+            <input type="text" class="form-control" id="numero_endereco" name="numero_endereco" [(ngModel)]="paciente.endereco[0].numero" mask="0000">
+         </div>
+         <div class="form-group col-md-4">
+            <label for="bairro">* Bairro:</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" [(ngModel)]="paciente.endereco[0].bairro" maxlength="30">
+         </div>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="email">* E-mail:</label>
-        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="paciente.contato[0].email">
+      <div class="form-row">
+         <div class="form-group col-md-4">
+            <label for="estado">* Estado:</label>
+            <select id="estado" class="form-control" name="estado" [(ngModel)]="paciente.endereco[0].estado">
+            <option selected>--</option>
+            <option>Acre</option>
+            <option>Alagoas</option>
+            <option>Amapá</option>
+            <option>Amazonas</option>
+            <option>Bahia</option>
+            <option>Ceará</option>
+            <option>Distrito Federal</option>
+            <option>Espírito Santo</option>
+            <option>Goiás</option>
+            <option>Maranhão</option>
+            <option>Mato Grosso</option>
+            <option>Mato Grosso do Sul</option>
+            <option>Minas Gerais</option>
+            <option>Pará</option>
+            <option>Paraíba</option>
+            <option>Paraná</option>
+            <option>Pernambuco</option>
+            <option>Piauí</option>
+            <option>Rio de Janeiro</option>
+            <option>Rio Grande do Norte</option>
+            <option>Rio Grande do Sul</option>
+            <option>Rondônia</option>
+            <option>Roraima</option>
+            <option>Santa Catarina</option>
+            <option>São Paulo</option>
+            <option>Sergipe</option>
+            <option>Tocantins</option>
+            <option>Estrangeiro</option>
+            </select>
+         </div>
+         <div class="form-group col-md-8">
+            <label for="complemento">complemento:</label>
+            <input type="text" class="form-control" id="complemento" name="complemento" [(ngModel)]="paciente.endereco[0].complemento" maxlength="60">
+         </div>
       </div>
-      <div class="form-group col-md-4">
-        <label for="tipo_contato">* Tipo de contato:</label>
-        <select id="tipo_contato" class="form-control" name="tipo_contato" [(ngModel)]="paciente.contato[0].tipo_contato">
-          <option selected>--</option>
-          <option>Celular</option>
-          <option>Telefone</option>
-        </select>
+      <br>
+      <hr>
+      <h5 class="text-center">Dados físcos:</h5>
+      <hr>
+      <div class="form-row">
+         <div class="form-group col-md-4">
+            <label for="altura">* Altura:</label>
+            <input type="text" class="form-control" id="altura" name="altura" [(ngModel)]="paciente.fisico.altura" mask="0.00" maxlength="4">
+         </div>
+         <div class="form-group col-md-4">
+            <label for="peso">* Peso:</label>
+            <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="paciente.fisico.peso" mask="0.00" maxlength="4">
+         </div>
+         <div class="form-group col-md-4">
+            <label for="tipo_sanguineo">* Tipo de sanguíneo:</label>
+            <select id="tipo_sanguineo" class="form-control" name="tipo_sanguineo" [(ngModel)]="paciente.fisico.tipo_sanguineo">
+            <option selected>--</option>
+            <option value="A_POSITIVO">A +</option>
+            <option value="A_NEGATIVO">A -</option>
+            <option value="B_POSITIVO">B +</option>
+            <option value="B_NEGATIVO">B -</option>
+            <option value="A_B_POSITIVO">AB +</option>
+            <option value="A_B_NEGATIVO">AB -</option>
+            <option value="O_POSITIVO">O +</option>
+            <option value="O_NEGATIVO">O -</option>
+            </select>
+         </div>
       </div>
-      <div class="form-group col-md-4">
-        <label for="numero_contato">* Número:</label>
-        <input type="text" class="form-control" id="numero_contato" name="numero_contato" [(ngModel)]="paciente.contato[0].numero">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="rua">* Rua:</label>
-        <input type="text" class="form-control" id="rua" name="rua" [(ngModel)]="paciente.endereco[0].rua">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="numero_endereco">* Número:</label>
-        <input type="text" class="form-control" id="numero_endereco" name="numero_endereco" [(ngModel)]="paciente.endereco[0].numero">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="bairro">* Bairro:</label>
-        <input type="text" class="form-control" id="bairro" name="bairro" [(ngModel)]="paciente.endereco[0].bairro">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="estado">* Estado:</label>
-        <select id="estado" class="form-control" name="estado" [(ngModel)]="paciente.endereco[0].estado">
-          <option selected>--</option>
-          <option>Acre</option>
-          <option>Alagoas</option>
-          <option>Amapá</option>
-          <option>Amazonas</option>
-          <option>Bahia</option>
-          <option>Ceará</option>
-          <option>Distrito Federal</option>
-          <option>Espírito Santo</option>
-          <option>Goiás</option>
-          <option>Maranhão</option>
-          <option>Mato Grosso</option>
-          <option>Mato Grosso do Sul</option>
-          <option>Minas Gerais</option>
-          <option>Pará</option>
-          <option>Paraíba</option>
-          <option>Paraná</option>
-          <option>Pernambuco</option>
-          <option>Piauí</option>
-          <option>Rio de Janeiro</option>
-          <option>Rio Grande do Norte</option>
-          <option>Rio Grande do Sul</option>
-          <option>Rondônia</option>
-          <option>Roraima</option>
-          <option>Santa Catarina</option>
-          <option>São Paulo</option>
-          <option>Sergipe</option>
-          <option>Tocantins</option>
-          <option>Estrangeiro</option>
-        </select>
-      </div>
-      <div class="form-group col-md-8">
-        <label for="complemento">complemento:</label>
-        <input type="text" class="form-control" id="complemento" name="complemento" [(ngModel)]="paciente.endereco[0].complemento">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="altura">* Altura:</label>
-        <input type="text" class="form-control" id="altura" name="altura" [(ngModel)]="paciente.fisico.altura">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="peso">* Peso:</label>
-        <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="paciente.fisico.peso">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="tipo_sanguineo">* Tipo de sanguíneo:</label>
-        <select id="tipo_sanguineo" class="form-control" name="tipo_sanguineo" [(ngModel)]="paciente.fisico.tipo_sanguineo">
-          <option selected>--</option>
-          <option value="A_POSITIVO">A +</option>
-          <option value="A_NEGATIVO">A -</option>
-          <option value="B_POSITIVO">B +</option>
-          <option value="B_NEGATIVO">B -</option>
-          <option value="A_B_POSITIVO">AB +</option>
-          <option value="A_B_NEGATIVO">AB -</option>
-          <option value="O_POSITIVO">O +</option>
-          <option value="O_NEGATIVO">O -</option>
-        </select>
-      </div>
-    </div>
-    <hr>
-    <button class="btn btn-outline-danger" type="button" routerLink="/dashboard">Cancelar</button>
-    &nbsp;
-    <button class="btn btn-outline-success" type="button" (click)="salvar(paciente)">Salvar</button>
-  </form>
-  <footer class="footer">
+      <br>
+      <button class="btn btn-outline-danger" type="button" routerLink="/dashboard">Cancelar</button>
+      &nbsp;
+      <button class="btn btn-outline-success" type="button" (click)="salvar(paciente)">Salvar</button>
+   </form>
+   <footer class="footer">
       <div class="text-muted text-center">&copy; Miguel Castro - 2023</div>
-  </footer>
+   </footer>
 </div>

@@ -1,3 +1,4 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +21,10 @@ import { MenuComponent } from './menu/menu.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,6 @@ import com.api.model.ContatoModel;
 import com.api.model.EnderecoModel;
 import com.api.model.FisicoModel;
 import com.api.model.PacienteModel;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import java.util.List;

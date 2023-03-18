@@ -16,7 +16,7 @@ export class CadastroComponent implements OnInit {
     id: 0,
     nome: '',
     cpf: '',
-    data_nascimento: new Date(),
+    data_nascimento: undefined,
     contato: [{
       email: '',
       tipo_contato: '',
@@ -24,14 +24,14 @@ export class CadastroComponent implements OnInit {
     }],
     endereco: [{
       rua: '',
-      numero: 0,
+      numero: NaN,
       bairro: '',
       estado: '',
       complemento: ''
     }],
     fisico: {
-      altura: 0,
-      peso: 0,
+      altura: NaN,
+      peso: NaN,
       tipo_sanguineo: ''
     }
   };
@@ -55,6 +55,7 @@ export class CadastroComponent implements OnInit {
     }
     if (!this.paciente.data_nascimento) {
       this.alertMensagem = 'Campo data de nascimento é obrigatório.';
+      return false;
     }
     let emailsPreenchidos = true;
     this.paciente.contato.forEach(contato => {
@@ -63,7 +64,8 @@ export class CadastroComponent implements OnInit {
       }
     });
     if (!emailsPreenchidos) {
-      this.alertMensagem = 'Todos os campos e-mails dos contatos são obrigatórios.';
+      this.alertMensagem = 'Campo e-mail é obrigatório.';
+      return false;
     }
     let tipoContatoPreenchidos = true;
     this.paciente.contato.forEach(contato => {
@@ -72,7 +74,8 @@ export class CadastroComponent implements OnInit {
       }
     });
     if (!tipoContatoPreenchidos) {
-      this.alertMensagem = 'Todos os campos tipo de contatos são obrigatórios.';
+      this.alertMensagem = 'Campo tipo de contato é obrigatório.';
+      return false;
     }
     let numerosContatoPreenchidos = true;
     this.paciente.contato.forEach(contato => {
@@ -81,7 +84,8 @@ export class CadastroComponent implements OnInit {
       }
     });
     if (!numerosContatoPreenchidos) {
-      this.alertMensagem = 'Todos os campos número de contatos são obrigatórios.';
+      this.alertMensagem = 'Campo número de contato é obrigatório.';
+      return false;
     }
     let ruaPreenchidas = true;
     this.paciente.endereco.forEach(endereco => {
@@ -90,7 +94,8 @@ export class CadastroComponent implements OnInit {
       }
     });
     if (!ruaPreenchidas) {
-      this.alertMensagem = 'Todos os campos rua são obrigatórios.';
+      this.alertMensagem = 'Campo rua é obrigatório.';
+      return false;
     }
     let numerosEnderecoPreenchidos = true;
     this.paciente.endereco.forEach(endereco => {
@@ -99,7 +104,8 @@ export class CadastroComponent implements OnInit {
       }
     });
     if (!numerosEnderecoPreenchidos) {
-      this.alertMensagem = 'Todos os campos número de endereços são obrigatórios.';
+      this.alertMensagem = 'Campo número de endereço é obrigatório.';
+      return false;
     }
     let bairroPreenchidos = true;
     this.paciente.endereco.forEach(endereco => {
@@ -108,7 +114,8 @@ export class CadastroComponent implements OnInit {
       }
     });
     if (!bairroPreenchidos) {
-      this.alertMensagem = 'Todos os campos bairro são obrigatórios.';
+      this.alertMensagem = 'Campo bairro é obrigatório.';
+      return false;
     }
     let estadoPreenchidos = true;
     this.paciente.endereco.forEach(endereco => {
@@ -117,16 +124,20 @@ export class CadastroComponent implements OnInit {
       }
     });
     if (!estadoPreenchidos) {
-      this.alertMensagem = 'Todos os campos estado são obrigatórios.';
+      this.alertMensagem = 'Campo estado é obrigatório.';
+      return false;
     }
     if (!this.paciente.fisico.altura) {
       this.alertMensagem = 'Campo altura é obrigatório.';
+      return false;
     }
     if (!this.paciente.fisico.peso) {
       this.alertMensagem = 'Campo peso é obrigatório.';
+      return false;
     }
     if (!this.paciente.fisico.tipo_sanguineo) {
       this.alertMensagem = 'Campo tipo sanguíneo é obrigatório.';
+      return false;
     }
   return true;
   }
@@ -142,7 +153,7 @@ export class CadastroComponent implements OnInit {
         id: 0,
         nome: '',
         cpf: '',
-        data_nascimento: new Date(),
+        data_nascimento: undefined,
         contato: [{
           email: '',
           tipo_contato: '',
@@ -150,14 +161,14 @@ export class CadastroComponent implements OnInit {
         }],
         endereco: [{
           rua: '',
-          numero: 0,
+          numero: NaN,
           bairro: '',
           estado: '',
           complemento: ''
         }],
         fisico: {
-          altura: 0,
-          peso: 0,
+          altura: NaN,
+          peso: NaN,
           tipo_sanguineo: ''
         }
       };
