@@ -55,6 +55,14 @@ public class PacienteController {
                 enderecoService.totalPacientePorEstado(estado), HttpStatus.OK);
     }
     
+    @GetMapping("/imc")
+    @Operation(description = "IMC em faixa etária")
+    public ResponseEntity<List<Object>> calculoIMC() {
+
+        return new ResponseEntity<List<Object>>(
+                pacienteService.calculoIMC(), HttpStatus.OK);
+    }
+    
     @PostMapping
     @Operation(description = "Salvar")
     public ResponseEntity<PacienteResponseDto> salvar(@Valid @RequestBody PacienteRequestDto pacienteRequestDto) {

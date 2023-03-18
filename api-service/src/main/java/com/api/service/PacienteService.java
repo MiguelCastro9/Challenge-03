@@ -28,6 +28,26 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
+    //CRIAR UM OJECTO DE FATO PARA REPRESENTAR ESSA QUERY
+    public List<Object> calculoIMC() {
+
+//        Integer total = pacienteRepository.getPesoEAltura().size();
+        //List<Integer> idades = pacienteRepository.getPesoEAltura();
+//        List<Double> calculosIMC;
+//        List<Integer> listaTotalPacientePorFaixaEtaria = null;
+//        Integer totalPacientePorFaixaEtaria;
+
+//        for (int i = 0; i < 100; i++) {
+//            if (idades.get(i) > 0 && idades.get(i) <= 10) {
+//                listaTotalPacientePorFaixaEtaria.add(idades.get(i));
+//            }
+//            for (int j = 0; j < listaTotalPacientePorFaixaEtaria.size(); j++) {
+//                
+//            }
+//        }
+    return pacienteRepository.getIdadePesoAltura();
+    }
+
     private void verificaValorExistente(PacienteModel pacienteModel) {
 
         PacienteModel pacienteCpf = pacienteRepository.findByCpf(pacienteModel.getCpf());
