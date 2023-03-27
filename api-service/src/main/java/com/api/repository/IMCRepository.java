@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 public interface IMCRepository extends JpaRepository<IMCModel, Long> {
 
     @Query(value = "SELECT p.id, YEAR(CURRENT_DATE()) - YEAR(p.data_nascimento) AS idade, f.altura, f.peso "
-            + "FROM paciente p "
-            + "INNER JOIN fisico f "
+            + "FROM Paciente p "
+            + "INNER JOIN Fisico f "
             + "ON "
             + "p.fisico_id = f.id", nativeQuery = true)
     public List<IMCModel> getIdadePesoAltura();
