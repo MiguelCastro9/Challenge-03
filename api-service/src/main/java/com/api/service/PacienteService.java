@@ -3,11 +3,9 @@ package com.api.service;
 import com.api.exception.ValorExistenteException;
 import com.api.model.IMCModel;
 import com.api.model.PacienteModel;
+import com.api.repository.IMCRepository;
 import com.api.repository.PacienteRepository;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +19,9 @@ public class PacienteService {
 
     @Autowired
     PacienteRepository pacienteRepository;
+    
+    @Autowired
+    IMCRepository imcRepository;
 
     public List<PacienteModel> listar() {
 
@@ -36,7 +37,7 @@ public class PacienteService {
     public List<IMCModel> calculoIMC() {
 
         List<IMCModel> imcs = new ArrayList<>();
-        imcs = (List<IMCModel>) pacienteRepository.getIdadePesoAltura();
+        imcs = (List<IMCModel>) imcRepository.getIdadePesoAltura();
         return imcs;
     }
 

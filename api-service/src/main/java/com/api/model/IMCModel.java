@@ -1,14 +1,22 @@
 package com.api.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author Miguel Castro
  */
-public class IMCModel {
+@Entity
+public class IMCModel implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
 
+    @Id
     private Long id;
 
-    private Long data_nascimento;
+    private Long idade;
 
     private Double altura;
 
@@ -17,9 +25,9 @@ public class IMCModel {
     public IMCModel() {
     }
 
-    public IMCModel(Long id, Long data_nascimento, Double altura, Double peso) {
+    public IMCModel(Long id, Long idade, Double altura, Double peso) {
         this.id = id;
-        this.data_nascimento = data_nascimento;
+        this.idade = idade;
         this.altura = altura;
         this.peso = peso;
     }
@@ -32,12 +40,12 @@ public class IMCModel {
         this.id = id;
     }
 
-    public Long getData_nascimento() {
-        return data_nascimento;
+    public Long getIdade(){
+        return idade;
     }
 
-    public void setData_nascimento(Long data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setIdade(Long idade) {
+        this.idade = idade;
     }
 
     public Double getAltura() {

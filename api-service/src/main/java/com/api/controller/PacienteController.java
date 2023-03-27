@@ -34,7 +34,7 @@ public class PacienteController {
 
     @Autowired
     PacienteService pacienteService;
-    
+
     @Autowired
     EnderecoService enderecoService;
 
@@ -47,7 +47,7 @@ public class PacienteController {
                         -> PacienteResponseDto.converterEntidadeParaPacienteDto(paciente))
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
-    
+
     @GetMapping("/{estado}")
     @Operation(description = "Total de paciente por estado")
     public ResponseEntity<Integer> totalPacientePorEstado(@PathVariable String estado) {
@@ -55,7 +55,7 @@ public class PacienteController {
         return new ResponseEntity<Integer>(
                 enderecoService.totalPacientePorEstado(estado), HttpStatus.OK);
     }
-    
+
     @GetMapping("/imc")
     @Operation(description = "IMC em faixa etária")
     public ResponseEntity<List<IMCModel>> calculoIMC() {
@@ -63,7 +63,7 @@ public class PacienteController {
         return new ResponseEntity<List<IMCModel>>(
                 pacienteService.calculoIMC(), HttpStatus.OK);
     }
-    
+
     @PostMapping
     @Operation(description = "Salvar")
     public ResponseEntity<PacienteResponseDto> salvar(@Valid @RequestBody PacienteRequestDto pacienteRequestDto) {
