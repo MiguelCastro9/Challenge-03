@@ -58,9 +58,9 @@ public class PacienteController {
 
     @GetMapping("/imc")
     @Operation(description = "IMC em faixa etária")
-    public ResponseEntity<List<IMCModel>> calculoIMC() {
+    public ResponseEntity<List<Double>> calculoIMC() {
 
-        return new ResponseEntity<List<IMCModel>>(
+        return new ResponseEntity<List<Double>>(
                 pacienteService.calculoIMC(), HttpStatus.OK);
     }
 

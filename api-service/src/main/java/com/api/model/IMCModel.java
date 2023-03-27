@@ -16,7 +16,7 @@ public class IMCModel implements Serializable {
     @Id
     private Long id;
 
-    private Long idade;
+    private Integer idade;
 
     private Double altura;
 
@@ -25,7 +25,7 @@ public class IMCModel implements Serializable {
     public IMCModel() {
     }
 
-    public IMCModel(Long id, Long idade, Double altura, Double peso) {
+    public IMCModel(Long id, Integer idade, Double altura, Double peso) {
         this.id = id;
         this.idade = idade;
         this.altura = altura;
@@ -40,11 +40,11 @@ public class IMCModel implements Serializable {
         this.id = id;
     }
 
-    public Long getIdade(){
+    public Integer getIdade(){
         return idade;
     }
 
-    public void setIdade(Long idade) {
+    public void setIdade(Integer idade) {
         this.idade = idade;
     }
 
@@ -62,5 +62,10 @@ public class IMCModel implements Serializable {
 
     public void setPeso(Double peso) {
         this.peso = peso;
+    }
+
+    @Override
+    public String toString() {
+        return "IMCModel{" + "id=" + id + ", idade=" + idade + ", altura=" + altura + ", peso=" + peso + '}';
     }
 }
