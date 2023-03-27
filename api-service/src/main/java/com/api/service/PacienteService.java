@@ -1,8 +1,13 @@
 package com.api.service;
 
 import com.api.exception.ValorExistenteException;
+import com.api.model.IMCModel;
 import com.api.model.PacienteModel;
 import com.api.repository.PacienteRepository;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,24 +33,11 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
-    //CRIAR UM OJECTO DE FATO PARA REPRESENTAR ESSA QUERY
-    public List<Object> calculoIMC() {
+    public List<IMCModel> calculoIMC() {
 
-//        Integer total = pacienteRepository.getPesoEAltura().size();
-        //List<Integer> idades = pacienteRepository.getPesoEAltura();
-//        List<Double> calculosIMC;
-//        List<Integer> listaTotalPacientePorFaixaEtaria = null;
-//        Integer totalPacientePorFaixaEtaria;
-
-//        for (int i = 0; i < 100; i++) {
-//            if (idades.get(i) > 0 && idades.get(i) <= 10) {
-//                listaTotalPacientePorFaixaEtaria.add(idades.get(i));
-//            }
-//            for (int j = 0; j < listaTotalPacientePorFaixaEtaria.size(); j++) {
-//                
-//            }
-//        }
-    return pacienteRepository.getIdadePesoAltura();
+        List<IMCModel> imcs = new ArrayList<>();
+        imcs = (List<IMCModel>) pacienteRepository.getIdadePesoAltura();
+        return imcs;
     }
 
     private void verificaValorExistente(PacienteModel pacienteModel) {
