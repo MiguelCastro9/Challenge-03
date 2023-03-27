@@ -1,6 +1,7 @@
 package com.api.service;
 
 import com.api.exception.ValorExistenteException;
+import com.api.model.FaixaEtariaIMCModel;
 import com.api.model.IMCModel;
 import com.api.model.PacienteModel;
 import com.api.repository.IMCRepository;
@@ -39,10 +40,11 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
-    public List<Double> calculoIMC() {
+    public List<FaixaEtariaIMCModel> calculoIMC() {
 
         List<IMCModel> imcs = new ArrayList<>();
-        List<Double> imcsMedio = new ArrayList<>();
+        FaixaEtariaIMCModel faixaEtarias = new FaixaEtariaIMCModel();
+        List<FaixaEtariaIMCModel> imcsMedio = new ArrayList<>();
         imcs = imcRepository.getIdadePesoAltura();
 
         for (int i = 0; i < imcs.size(); i++) {
@@ -57,34 +59,34 @@ public class PacienteService {
             imc = Double.valueOf(decimalFormat.format(imc));
 
             if (idade >= 0 && idade <= 10) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [0 - 10]", imc));
             }
             if (idade >= 11 && idade <= 20) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [11 - 20]", imc));
             }
             if (idade >= 21 && idade <= 30) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [21 - 30]", imc));
             }
             if (idade >= 31 && idade <= 40) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [31 - 40]", imc));
             }
             if (idade >= 41 && idade <= 50) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [41 - 50]", imc));
             }
             if (idade >= 51 && idade <= 60) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [51 - 60]", imc));
             }
             if (idade >= 61 && idade <= 70) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [61 - 70]", imc));
             }
             if (idade >= 71 && idade <= 80) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [71 - 80]", imc));
             }
             if (idade >= 81 && idade <= 90) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [81 - 90]", imc));
             }
             if (idade >= 91 && idade <= 100) {
-                imcsMedio.add(imc);
+                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [91 - 100]", imc));
             }
         }
         return imcsMedio;
