@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,12 +122,9 @@ public class PacienteService {
                 }
             }
         }
-        List<FaixaEtariaIMCModel> faixasEtarias = new ArrayList<>();
-
-        for (Map.Entry<String, Double> entry : imcsMedio.entrySet()) {
-            FaixaEtariaIMCModel faixaEtariaIMC = new FaixaEtariaIMCModel(entry.getKey(), entry.getValue());
-            faixasEtarias.add(faixaEtariaIMC);
-        }
+        List<FaixaEtariaIMCModel> faixasEtarias = imcsMedio.entrySet().stream()
+        .map(entry -> new FaixaEtariaIMCModel(entry.getKey(), entry.getValue()))
+        .collect(Collectors.toList());
 
         return faixasEtarias;
     }
