@@ -1,5 +1,6 @@
 package com.api.dto;
 
+import com.api.enums.GeneroEnum;
 import com.api.model.ContatoModel;
 import com.api.model.EnderecoModel;
 import com.api.model.FisicoModel;
@@ -7,6 +8,8 @@ import com.api.model.PacienteModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -26,6 +29,9 @@ public class PacienteRequestDto {
     private String cpf;
     @NotNull(message = "Data de nascimento é obrigatório.")
     private Date data_nascimento;
+    @NotNull(message = "Gênero é obrigatório.")
+    @Enumerated(EnumType.STRING)
+    private GeneroEnum genero;
     @NotNull(message = "Endereço é obrigatório.")
     private List<EnderecoModel> endereco;
     @NotNull(message = "Contato é obrigatório.")
@@ -34,7 +40,7 @@ public class PacienteRequestDto {
     private FisicoModel fisico;
 
     public PacienteModel converterPacienteDtoParaEntidade() {
-        return new PacienteModel(nome, cpf, data_nascimento, endereco, contato, fisico);
+        return new PacienteModel(nome, cpf, data_nascimento, genero, endereco, contato, fisico);
     }
 
     public String getNome() {
@@ -59,6 +65,14 @@ public class PacienteRequestDto {
 
     public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
+    }
+
+    public GeneroEnum getGenero() {
+        return genero;
+    }
+
+    public void setGenero(GeneroEnum genero) {
+        this.genero = genero;
     }
 
     public List<EnderecoModel> getEndereco() {
@@ -87,6 +101,6 @@ public class PacienteRequestDto {
 
     @Override
     public String toString() {
-        return "PacienteRequestDto{" + "nome=" + nome + ", cpf=" + cpf + ", data_nascimento=" + data_nascimento + ", endereco=" + endereco + ", contato=" + contato + ", fisico=" + fisico + '}';
+        return "PacienteRequestDto{" + "nome=" + nome + ", cpf=" + cpf + ", data_nascimento=" + data_nascimento + ", genero=" + genero + ", endereco=" + endereco + ", contato=" + contato + ", fisico=" + fisico + '}';
     }
 }

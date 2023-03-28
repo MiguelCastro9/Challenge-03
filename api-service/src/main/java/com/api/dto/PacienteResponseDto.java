@@ -1,5 +1,6 @@
 package com.api.dto;
 
+import com.api.enums.GeneroEnum;
 import com.api.model.ContatoModel;
 import com.api.model.EnderecoModel;
 import com.api.model.FisicoModel;
@@ -7,6 +8,8 @@ import com.api.model.PacienteModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  *
@@ -19,15 +22,17 @@ public class PacienteResponseDto {
     private String nome;
     private String cpf;
     private Date data_nascimento;
+    private String genero;
     private List<EnderecoModel> endereco;
     private List<ContatoModel> contato;
     private FisicoModel fisico;
 
-    public PacienteResponseDto(Long id, String nome, String cpf, Date data_nascimento, List<EnderecoModel> endereco, List<ContatoModel> contato, FisicoModel fisico) {
+    public PacienteResponseDto(Long id, String nome, String cpf, Date data_nascimento, String genero, List<EnderecoModel> endereco, List<ContatoModel> contato, FisicoModel fisico) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.data_nascimento = data_nascimento;
+        this.genero = genero;
         this.endereco = endereco;
         this.contato = contato;
         this.fisico = fisico;
@@ -35,7 +40,7 @@ public class PacienteResponseDto {
 
     public static PacienteResponseDto converterEntidadeParaPacienteDto(PacienteModel pacienteModel) {
         return new PacienteResponseDto(pacienteModel.getId(), pacienteModel.getNome(), pacienteModel.getCpf(),
-                pacienteModel.getData_nascimento(), pacienteModel.getEndereco(), pacienteModel.getContato(),
+                pacienteModel.getData_nascimento(), pacienteModel.getGenero().name(), pacienteModel.getEndereco(), pacienteModel.getContato(),
                 pacienteModel.getFisico());
     }
 
@@ -71,6 +76,14 @@ public class PacienteResponseDto {
         this.data_nascimento = data_nascimento;
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    
     public List<EnderecoModel> getEndereco() {
         return endereco;
     }

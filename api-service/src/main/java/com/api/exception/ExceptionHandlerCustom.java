@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -40,12 +41,24 @@ public class ExceptionHandlerCustom extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, mensagem, headers, HttpStatus.BAD_REQUEST, request);
     }
     
-    @ExceptionHandler(ValorExistenteException.class)
-    public ResponseEntity<Object> handleValorExistenteException(ValorExistenteException ex, WebRequest request) {
+    @ExceptionHandler(MensagemCustomException.class)
+    public ResponseEntity<Object> handleValorExistenteException(MensagemCustomException ex, WebRequest request) {
 
         String mensagemUsuario = ex.getMessage();
         String mensagemDesenvolvedor = ex.getMessage();
         List<MensagemException> mensagem = Arrays.asList(new MensagemException(mensagemUsuario, mensagemDesenvolvedor));
         return handleExceptionInternal(ex, mensagem, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, 
+            HttpStatus status, WebRequest request) {
+        
+        String mensagemUsuario = "Ocorreu um erro no sistema, entre em contato com o administrador.";
+        String mensagemDesenvolvedor = ex.getMessage();
+        List<MensagemException> mensagem = Arrays.asList(new MensagemException(mensagemUsuario, mensagemDesenvolvedor));
+        return handleExceptionInternal(ex, mensagem, headers, HttpStatus.BAD_REQUEST, request);
+    }
+    
+    
 }

@@ -1,11 +1,14 @@
 package com.api.model;
 
+import com.api.enums.GeneroEnum;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,12 +34,18 @@ public class PacienteModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private String cpf;
 
     @Temporal(TemporalType.DATE)
     private Date data_nascimento;
+    
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private GeneroEnum genero;
 
     @OneToMany(mappedBy = "id", targetEntity = EnderecoModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<EnderecoModel> endereco;
@@ -50,20 +59,22 @@ public class PacienteModel implements Serializable {
     public PacienteModel() {
     }
 
-    public PacienteModel(String nome, String cpf, Date data_nascimento, List<EnderecoModel> endereco, List<ContatoModel> contato, FisicoModel fisico) {
+    public PacienteModel(String nome, String cpf, Date data_nascimento, GeneroEnum genero, List<EnderecoModel> endereco, List<ContatoModel> contato, FisicoModel fisico) {
         this.nome = nome;
         this.cpf = cpf;
         this.data_nascimento = data_nascimento;
+        this.genero = genero;
         this.endereco = endereco;
         this.contato = contato;
         this.fisico = fisico;
     }
 
-    public PacienteModel(Long id, String nome, String cpf, Date data_nascimento, List<EnderecoModel> endereco, List<ContatoModel> contato, FisicoModel fisico) {
+    public PacienteModel(Long id, String nome, String cpf, Date data_nascimento, GeneroEnum genero, List<EnderecoModel> endereco, List<ContatoModel> contato, FisicoModel fisico) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.data_nascimento = data_nascimento;
+        this.genero = genero;
         this.endereco = endereco;
         this.contato = contato;
         this.fisico = fisico;
@@ -99,6 +110,14 @@ public class PacienteModel implements Serializable {
 
     public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
+    }
+
+    public GeneroEnum getGenero() {
+        return genero;
+    }
+
+    public void setGenero(GeneroEnum genero) {
+        this.genero = genero;
     }
 
     public List<EnderecoModel> getEndereco() {

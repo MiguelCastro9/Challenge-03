@@ -1,7 +1,7 @@
 package com.api.service;
 
 import com.api.dto.FaixaEtariaIMCResponseDto;
-import com.api.exception.ValorExistenteException;
+import com.api.exception.MensagemCustomException;
 import com.api.model.IMCModel;
 import com.api.model.PacienteModel;
 import com.api.repository.IMCRepository;
@@ -135,15 +135,15 @@ public class PacienteService {
         PacienteModel pacienteContatoNumero = pacienteRepository.findByContatoNumero(pacienteModel.getContato().get(0).getNumero());
 
         if (pacienteCpf != null) {
-            throw new ValorExistenteException(String.format("O CPF [%s] já existe.", pacienteModel.getCpf()));
+            throw new MensagemCustomException(String.format("O CPF [%s] já existe.", pacienteModel.getCpf()));
         }
 
         if (pacienteContatoEmail != null) {
-            throw new ValorExistenteException(String.format("O e-mail de contato [%s] já existe.", pacienteModel.getContato().get(0).getEmail()));
+            throw new MensagemCustomException(String.format("O e-mail de contato [%s] já existe.", pacienteModel.getContato().get(0).getEmail()));
         }
 
         if (pacienteContatoNumero != null) {
-            throw new ValorExistenteException(String.format("O número de contato [%s] já existe.", pacienteModel.getContato().get(0).getNumero()));
+            throw new MensagemCustomException(String.format("O número de contato [%s] já existe.", pacienteModel.getContato().get(0).getNumero()));
         }
     }
 }

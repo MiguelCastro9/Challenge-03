@@ -37,13 +37,13 @@ insert into endereco (bairro, estado, complemento, numero, rua) values ('60477 R
 insert into endereco (bairro, estado, complemento, numero, rua) values ('833 Sunfield Alley', 'Ceará', 'Suite 86', 124, '2 Esker Trail');
 insert into endereco (bairro, estado, complemento, numero, rua) values ('23360 Hayes Parkway', 'Acre', 'Apt 740', 135, '4 Atwood Point');
 
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('595.930.300-00', '1983-07-05', 1, 'Rosalinda Warder');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('059.496.230-70', '1991-06-28', 2, 'Rhodia Jacobsson');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('158.168.250-62', '1996-09-29', 3, 'Riccardo Gecke');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('410.469.720-65', '1995-04-26', 4, 'Karly Hoy');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('440.385.710-84', '1980-09-13', 5, 'Stefan Crimmins');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('507.795.030-07', '1988-02-20', 6, 'Hilton Bricket');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('347.359.870-45', '1992-03-13', 7, 'Janot Beisley');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('590.376.420-71', '1997-02-24', 8, 'Crosby Buesden');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('081.435.820-94', '1992-01-09', 9, 'Lenee Orbell');
-insert into paciente (cpf, data_nascimento, fisico_id, nome) values ('253.059.630-10', '1987-02-01', 10, 'Buddy Cartmail');
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Rosalinda Warder', '595.930.300-00', '1983-07-05', 'FEMININO', 1);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Rhodia Jacobsson', '059.496.230-70', '1991-06-28', 'FEMININO', 2);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Riccardo Gecke', '158.168.250-62', '1996-09-29', 'MASCULINO', 3);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Karly Hoy', '410.469.720-65', '1995-04-26', 'FEMININO', 4);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Stefan Crimmins', '440.385.710-84', '1980-09-13', 'MASCULINO', 5);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Hilton Bricket', '507.795.030-07', '1988-02-20', 'MASCULINO', 6);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Janot Beisley', '347.359.870-45', '1992-03-13', 'MASCULINO', 7);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Crosby Buesden', '590.376.420-71', '1997-02-24', 'MASCULINO', 8);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Lenee Orbell', '081.435.820-94', '1992-01-09', 'MASCULINO', 9);
+insert into paciente (nome, cpf, data_nascimento, genero, fisico_id) values ('Buddy Cartmail', '253.059.630-10', '1987-02-01', 'MASCULINO', 10);
