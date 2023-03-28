@@ -6,14 +6,10 @@ import com.api.model.IMCModel;
 import com.api.model.PacienteModel;
 import com.api.repository.IMCRepository;
 import com.api.repository.PacienteRepository;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +37,11 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
-    public HashMap<String, Double> calculoIMC() {
+    public List<FaixaEtariaIMCModel> calculoIMC() {
 
         List<IMCModel> imcs = new ArrayList<>();
-        FaixaEtariaIMCModel faixaEtarias = new FaixaEtariaIMCModel();
-        HashMap<String, Double> imcsMedio = new HashMap<>();
         imcs = imcRepository.getIdadePesoAltura();
+        HashMap<String, Double> imcsMedio = new HashMap<>();
 
         for (int i = 0; i < imcs.size(); i++) {
 
@@ -54,10 +49,6 @@ public class PacienteService {
             Double peso = imcs.get(i).getPeso();
             Double altura = imcs.get(i).getAltura();
             Double imc = peso / (altura * altura);
-            DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
-            decimalFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.US));
-            decimalFormat.setRoundingMode(RoundingMode.DOWN);
-            imc = Double.valueOf(decimalFormat.format(imc));
 
             if (idade >= 0 && idade <= 10) {
                 if (imcsMedio.containsKey("Faixa etária [0 - 10]")) {
@@ -130,7 +121,14 @@ public class PacienteService {
                 }
             }
         }
-        return imcsMedio;
+        List<FaixaEtariaIMCModel> faixasEtarias = new ArrayList<>();
+
+        for (Map.Entry<String, Double> entry : imcsMedio.entrySet()) {
+            FaixaEtariaIMCModel faixaEtariaIMC = new FaixaEtariaIMCModel(entry.getKey(), entry.getValue());
+            faixasEtarias.add(faixaEtariaIMC);
+        }
+
+        return faixasEtarias;
     }
 
     private void verificaValorExistente(PacienteModel pacienteModel) {
