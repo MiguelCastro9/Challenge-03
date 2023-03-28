@@ -11,6 +11,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,11 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
-    public List<FaixaEtariaIMCModel> calculoIMC() {
+    public HashMap<String, Double> calculoIMC() {
 
         List<IMCModel> imcs = new ArrayList<>();
         FaixaEtariaIMCModel faixaEtarias = new FaixaEtariaIMCModel();
-        List<FaixaEtariaIMCModel> imcsMedio = new ArrayList<>();
+        HashMap<String, Double> imcsMedio = new HashMap<>();
         imcs = imcRepository.getIdadePesoAltura();
 
         for (int i = 0; i < imcs.size(); i++) {
@@ -59,34 +60,74 @@ public class PacienteService {
             imc = Double.valueOf(decimalFormat.format(imc));
 
             if (idade >= 0 && idade <= 10) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [0 - 10]", imc));
+                if (imcsMedio.containsKey("Faixa etária [0 - 10]")) {
+                    imcsMedio.put("Faixa etária [0 - 10]", imcsMedio.get("Faixa etária [0 - 10]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [0 - 10]", imc);
+                }
             }
             if (idade >= 11 && idade <= 20) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [11 - 20]", imc));
+                if (imcsMedio.containsKey("Faixa etária [11 - 20]")) {
+                    imcsMedio.put("Faixa etária [11 - 20]", imcsMedio.get("Faixa etária [11 - 20]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [11 - 20]", imc);
+                }
             }
             if (idade >= 21 && idade <= 30) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [21 - 30]", imc));
+                if (imcsMedio.containsKey("Faixa etária [21 - 30]")) {
+                    imcsMedio.put("Faixa etária [21 - 30]", imcsMedio.get("Faixa etária [21 - 30]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [21 - 30]", imc);
+                }
             }
             if (idade >= 31 && idade <= 40) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [31 - 40]", imc));
+                if (imcsMedio.containsKey("Faixa etária [31 - 40]")) {
+                    imcsMedio.put("Faixa etária [31 - 40]", imcsMedio.get("Faixa etária [31 - 40]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [31 - 40]", imc);
+                }
             }
             if (idade >= 41 && idade <= 50) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [41 - 50]", imc));
+                if (imcsMedio.containsKey("Faixa etária [41 - 50]")) {
+                    imcsMedio.put("Faixa etária [41 - 50]", imcsMedio.get("Faixa etária [41 - 50]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [41 - 50]", imc);
+                }
             }
             if (idade >= 51 && idade <= 60) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [51 - 60]", imc));
+                if (imcsMedio.containsKey("Faixa etária [51 - 60]")) {
+                    imcsMedio.put("Faixa etária [51 - 60]", imcsMedio.get("Faixa etária [51 - 60]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [51 - 60]", imc);
+                }
             }
             if (idade >= 61 && idade <= 70) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [61 - 70]", imc));
+                if (imcsMedio.containsKey("Faixa etária [61 - 70]")) {
+                    imcsMedio.put("Faixa etária [61 - 70]", imcsMedio.get("Faixa etária [61 - 70]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [61 - 70]", imc);
+                }
             }
             if (idade >= 71 && idade <= 80) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [71 - 80]", imc));
+                if (imcsMedio.containsKey("Faixa etária [71 - 80]")) {
+                    imcsMedio.put("Faixa etária [71 - 80]", imcsMedio.get("Faixa etária [71 - 80]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [71 - 80]", imc);
+                }
             }
             if (idade >= 81 && idade <= 90) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [81 - 90]", imc));
+                if (imcsMedio.containsKey("Faixa etária [81 - 90]")) {
+                    imcsMedio.put("Faixa etária [81 - 90]", imcsMedio.get("Faixa etária [81 - 90]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [81 - 90]", imc);
+                }
             }
             if (idade >= 91 && idade <= 100) {
-                imcsMedio.add(new FaixaEtariaIMCModel("Faixa etária [91 - 100]", imc));
+                if (imcsMedio.containsKey("Faixa etária [91 - 100]")) {
+                    imcsMedio.put("Faixa etária [91 - 100]", imcsMedio.get("Faixa etária [91 - 100]") + imc);
+                } else {
+                    imcsMedio.put("Faixa etária [91 - 100]", imc);
+                }
             }
         }
         return imcsMedio;

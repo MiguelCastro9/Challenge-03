@@ -9,6 +9,7 @@ import com.api.service.EnderecoService;
 import com.api.service.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
@@ -59,9 +60,9 @@ public class PacienteController {
 
     @GetMapping("/imc")
     @Operation(description = "IMC em faixa etária")
-    public ResponseEntity<List<FaixaEtariaIMCModel>> calculoIMC() {
+    public ResponseEntity<HashMap<String, Double>> calculoIMC() {
 
-        return new ResponseEntity<List<FaixaEtariaIMCModel>>(
+        return new ResponseEntity<HashMap<String, Double>>(
                 pacienteService.calculoIMC(), HttpStatus.OK);
     }
 
