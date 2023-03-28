@@ -1,7 +1,7 @@
 package com.api.service;
 
+import com.api.dto.FaixaEtariaIMCResponseDto;
 import com.api.exception.ValorExistenteException;
-import com.api.model.FaixaEtariaIMCModel;
 import com.api.model.IMCModel;
 import com.api.model.PacienteModel;
 import com.api.repository.IMCRepository;
@@ -9,7 +9,6 @@ import com.api.repository.PacienteRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,7 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
-    public List<FaixaEtariaIMCModel> calculoIMC() {
+    public List<FaixaEtariaIMCResponseDto> calculoIMCPorfaixaEtaria() {
 
         List<IMCModel> imcs = new ArrayList<>();
         imcs = imcRepository.getIdadePesoAltura();
@@ -122,8 +121,8 @@ public class PacienteService {
                 }
             }
         }
-        List<FaixaEtariaIMCModel> faixasEtarias = imcsMedio.entrySet().stream()
-        .map(entry -> new FaixaEtariaIMCModel(entry.getKey(), entry.getValue()))
+        List<FaixaEtariaIMCResponseDto> faixasEtarias = imcsMedio.entrySet().stream()
+        .map(entry -> new FaixaEtariaIMCResponseDto(entry.getKey(), entry.getValue()))
         .collect(Collectors.toList());
 
         return faixasEtarias;

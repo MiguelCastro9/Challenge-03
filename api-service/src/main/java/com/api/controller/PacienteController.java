@@ -1,8 +1,8 @@
 package com.api.controller;
 
+import com.api.dto.FaixaEtariaIMCResponseDto;
 import com.api.dto.PacienteRequestDto;
 import com.api.dto.PacienteResponseDto;
-import com.api.model.FaixaEtariaIMCModel;
 import com.api.model.PacienteModel;
 import com.api.service.EnderecoService;
 import com.api.service.PacienteService;
@@ -58,10 +58,10 @@ public class PacienteController {
 
     @GetMapping("/imc")
     @Operation(description = "IMC em faixa etária")
-    public ResponseEntity<List<FaixaEtariaIMCModel>> calculoIMC() {
+    public ResponseEntity<List<FaixaEtariaIMCResponseDto>> calculoIMCPorfaixaEtaria() {
 
-        return new ResponseEntity<List<FaixaEtariaIMCModel>>(
-                pacienteService.calculoIMC(), HttpStatus.OK);
+        return new ResponseEntity<List<FaixaEtariaIMCResponseDto>>(
+                pacienteService.calculoIMCPorfaixaEtaria(), HttpStatus.OK);
     }
 
     @PostMapping

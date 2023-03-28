@@ -1,19 +1,19 @@
-package com.api.model;
+package com.api.dto;
 
 /**
  *
  * @author Miguel Castro
  */
-public class FaixaEtariaIMCModel {
+public class FaixaEtariaIMCResponseDto {
 
     private String faixaEtaria;
 
     private Double valorFaixaEtaria;
 
-    public FaixaEtariaIMCModel() {
+    public FaixaEtariaIMCResponseDto() {
     }
     
-    public FaixaEtariaIMCModel(String faixaEtaria, Double valorFaixaEtaria) {
+    public FaixaEtariaIMCResponseDto(String faixaEtaria, Double valorFaixaEtaria) {
         this.faixaEtaria = faixaEtaria;
         this.valorFaixaEtaria = valorFaixaEtaria;
     }
