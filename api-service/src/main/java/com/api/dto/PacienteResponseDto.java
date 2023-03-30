@@ -1,6 +1,5 @@
 package com.api.dto;
 
-import com.api.enums.GeneroEnum;
 import com.api.model.ContatoModel;
 import com.api.model.EnderecoModel;
 import com.api.model.FisicoModel;
@@ -8,8 +7,6 @@ import com.api.model.PacienteModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 /**
  *

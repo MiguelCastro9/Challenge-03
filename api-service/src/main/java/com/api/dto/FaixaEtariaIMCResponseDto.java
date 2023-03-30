@@ -1,9 +1,12 @@
 package com.api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  *
  * @author Miguel Castro
  */
+@Schema(name = "faixa etaria IMC Response DTO")
 public class FaixaEtariaIMCResponseDto {
 
     private String faixaEtaria;

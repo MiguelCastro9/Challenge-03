@@ -3,6 +3,7 @@ package com.api.controller;
 import com.api.dto.FaixaEtariaIMCResponseDto;
 import com.api.dto.PacienteRequestDto;
 import com.api.dto.PacienteResponseDto;
+import com.api.dto.PercentualObesosResponseDto;
 import com.api.model.PacienteModel;
 import com.api.service.EnderecoService;
 import com.api.service.PacienteService;
@@ -58,10 +59,18 @@ public class PacienteController {
 
     @GetMapping("/imc")
     @Operation(description = "IMC em faixa etária")
-    public ResponseEntity<List<FaixaEtariaIMCResponseDto>> calculoIMCPorfaixaEtaria() {
+    public ResponseEntity<List<FaixaEtariaIMCResponseDto>> calculoPorfaixaEtariaIMC() {
 
         return new ResponseEntity<List<FaixaEtariaIMCResponseDto>>(
-                pacienteService.calculoIMCPorfaixaEtaria(), HttpStatus.OK);
+                pacienteService.calculoPorfaixaEtariaIMC(), HttpStatus.OK);
+    }
+    
+    @GetMapping("/obesos")
+    @Operation(description = "Percentual de obesos masculinos e femininos")
+    public ResponseEntity<PercentualObesosResponseDto> calculoPercentualObesos() {
+
+        return new ResponseEntity<PercentualObesosResponseDto>(
+                pacienteService.calculoPercentualObesos(), HttpStatus.OK);
     }
 
     @PostMapping

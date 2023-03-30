@@ -1,10 +1,10 @@
 package com.api.service;
 
 import com.api.dto.FaixaEtariaIMCResponseDto;
+import com.api.dto.PercentualObesosResponseDto;
 import com.api.exception.MensagemCustomException;
-import com.api.model.IMCModel;
+import com.api.model.CalculoModel;
 import com.api.model.PacienteModel;
-import com.api.repository.IMCRepository;
 import com.api.repository.PacienteRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.api.repository.CalculoRepository;
 
 /**
  *
@@ -24,7 +25,7 @@ public class PacienteService {
     PacienteRepository pacienteRepository;
 
     @Autowired
-    IMCRepository imcRepository;
+    CalculoRepository imcRepository;
 
     public List<PacienteModel> listar() {
 
@@ -37,10 +38,10 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
-    public List<FaixaEtariaIMCResponseDto> calculoIMCPorfaixaEtaria() {
+    public List<FaixaEtariaIMCResponseDto> calculoPorfaixaEtariaIMC() {
 
-        List<IMCModel> imcs = new ArrayList<>();
-        imcs = imcRepository.getIdadePesoAltura();
+        List<CalculoModel> imcs = new ArrayList<>();
+        imcs = imcRepository.getData();
         HashMap<String, Double> imcsMedio = new HashMap<>();
 
         for (int i = 0; i < imcs.size(); i++) {
@@ -122,10 +123,46 @@ public class PacienteService {
             }
         }
         List<FaixaEtariaIMCResponseDto> faixasEtarias = imcsMedio.entrySet().stream()
-        .map(entry -> new FaixaEtariaIMCResponseDto(entry.getKey(), entry.getValue()))
-        .collect(Collectors.toList());
+                .map(entry -> new FaixaEtariaIMCResponseDto(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
 
         return faixasEtarias;
+    }
+
+    public PercentualObesosResponseDto calculoPercentualObesos() {
+
+        List<CalculoModel> imcs = new ArrayList<>();
+        imcs = imcRepository.getData();
+        Integer qtdMasculinos = 0;
+        Integer qtdFemininos = 0;
+        Integer qtdObesosMasculinos = 0;
+        Integer qtdObesosFemininos = 0;
+
+        for (int i = 0; i < imcs.size(); i++) {
+
+            Double peso = imcs.get(i).getPeso();
+            Double altura = imcs.get(i).getAltura();
+            Double imc = peso / (altura * altura);
+
+            if (imcs.get(i).getGenero().equalsIgnoreCase("MASCULINO")) {
+                qtdMasculinos++;
+                if (imc > 30) {
+                    qtdObesosMasculinos++;
+                }
+            }
+
+            if (imcs.get(i).getGenero().equalsIgnoreCase("FEMININO")) {
+                qtdFemininos++;
+                if (imc > 30) {
+                    qtdObesosFemininos++;
+                }
+            }
+        }
+        Double percentualObesosMasculinos = 100.0 * qtdObesosMasculinos / qtdMasculinos;
+        Double percentualObesosFemininos = 100.0 * qtdObesosFemininos / qtdFemininos;
+        PercentualObesosResponseDto percentuais = new PercentualObesosResponseDto(percentualObesosMasculinos, percentualObesosFemininos);
+
+        return percentuais;
     }
 
     private void verificaValorExistente(PacienteModel pacienteModel) {

@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * @author Miguel Castro
  */
 @Entity
-public class IMCModel implements Serializable {
+public class CalculoModel implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
@@ -17,17 +17,20 @@ public class IMCModel implements Serializable {
     private Long id;
 
     private Integer idade;
+    
+    private String genero;
 
     private Double altura;
 
     private Double peso;
 
-    public IMCModel() {
+    public CalculoModel() {
     }
 
-    public IMCModel(Long id, Integer idade, Double altura, Double peso) {
+    public CalculoModel(Long id, Integer idade, String genero, Double altura, Double peso) {
         this.id = id;
         this.idade = idade;
+        this.genero = genero;
         this.altura = altura;
         this.peso = peso;
     }
@@ -48,6 +51,14 @@ public class IMCModel implements Serializable {
         this.idade = idade;
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    
     public Double getAltura() {
         return altura;
     }
@@ -66,6 +77,6 @@ public class IMCModel implements Serializable {
 
     @Override
     public String toString() {
-        return "IMCModel{" + "id=" + id + ", idade=" + idade + ", altura=" + altura + ", peso=" + peso + '}';
+        return "IMCModel{" + "id=" + id + ", idade=" + idade + ", genero=" + genero + ", altura=" + altura + ", peso=" + peso + '}';
     }
 }
