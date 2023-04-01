@@ -17,6 +17,7 @@ export class CadastroComponent implements OnInit {
     nome: '',
     cpf: '',
     data_nascimento: undefined,
+    genero: '',
     contato: [{
       email: '',
       tipo_contato: '',
@@ -55,6 +56,10 @@ export class CadastroComponent implements OnInit {
     }
     if (!this.paciente.data_nascimento) {
       this.alertMensagem = 'Campo data de nascimento é obrigatório.';
+      return false;
+    }
+    if (!this.paciente.genero) {
+      this.alertMensagem = 'Campo gênero é obrigatório.';
       return false;
     }
     let emailsPreenchidos = true;
@@ -154,6 +159,7 @@ export class CadastroComponent implements OnInit {
         nome: '',
         cpf: '',
         data_nascimento: undefined,
+        genero: '',
         contato: [{
           email: '',
           tipo_contato: '',

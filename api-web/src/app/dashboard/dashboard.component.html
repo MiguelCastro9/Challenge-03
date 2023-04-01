@@ -400,6 +400,32 @@
       </form>
    </div>
 </div>
+
+
+
+
+<div class="container">
+  <table class="table table-hover table-dark text-center">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Data de nascimento</th>
+        <th scope="col">Gênero</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listaPacientes">
+        <td>{{item.nome}}</td>
+        <td>{{item.cpf}}</td>
+        <td>{{item.data_nascimento | date: 'dd/MM/yyyy'}}</td>
+        <td>{{item.genero.toLowerCase()}}</td>
+      </tr>
+  </table>
+</div>
+
+
+
 <footer class="footer">
    <div class="text-muted text-center">&copy; Miguel Castro - 2023</div>
 </footer>

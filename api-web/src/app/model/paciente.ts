@@ -8,6 +8,7 @@ export interface Paciente {
   nome: string;
   cpf: string;
   data_nascimento?: Date;
+  genero: string;
   contato: Contato[];
   endereco: Endereco[];
   fisico: Fisico;
