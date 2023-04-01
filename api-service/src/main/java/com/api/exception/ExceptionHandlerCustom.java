@@ -40,7 +40,7 @@ public class ExceptionHandlerCustom extends ResponseEntityExceptionHandler {
         List<MensagemException> mensagem = gerarListaDeMensagens(ex.getBindingResult());
         return handleExceptionInternal(ex, mensagem, headers, HttpStatus.BAD_REQUEST, request);
     }
-    
+
     @ExceptionHandler(MensagemCustomException.class)
     public ResponseEntity<Object> handleValorExistenteException(MensagemCustomException ex, WebRequest request) {
 
@@ -51,14 +51,12 @@ public class ExceptionHandlerCustom extends ResponseEntityExceptionHandler {
     }
 
     @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, 
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
-        
+
         String mensagemUsuario = "Ocorreu um erro no sistema, entre em contato com o administrador.";
         String mensagemDesenvolvedor = ex.getMessage();
         List<MensagemException> mensagem = Arrays.asList(new MensagemException(mensagemUsuario, mensagemDesenvolvedor));
         return handleExceptionInternal(ex, mensagem, headers, HttpStatus.BAD_REQUEST, request);
     }
-    
-    
 }

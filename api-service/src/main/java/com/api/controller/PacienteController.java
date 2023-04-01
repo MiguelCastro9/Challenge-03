@@ -61,12 +61,12 @@ public class PacienteController {
 
     @GetMapping("/imc")
     @Operation(description = "IMC em faixa etária")
-    public ResponseEntity<List<FaixaEtariaIMCResponseDto>> calculoPorfaixaEtariaIMC() {
+    public ResponseEntity<List<FaixaEtariaIMCResponseDto>> calculoIMCPorfaixaEtaria() {
 
         return new ResponseEntity<List<FaixaEtariaIMCResponseDto>>(
-                pacienteService.calculoPorfaixaEtariaIMC(), HttpStatus.OK);
+                pacienteService.calculoIMCPorfaixaEtaria(), HttpStatus.OK);
     }
-    
+
     @GetMapping("/obesos")
     @Operation(description = "Percentual de obesos masculinos e femininos")
     public ResponseEntity<PercentualObesosResponseDto> calculoPercentualObesos() {
@@ -74,7 +74,7 @@ public class PacienteController {
         return new ResponseEntity<PercentualObesosResponseDto>(
                 pacienteService.calculoPercentualObesos(), HttpStatus.OK);
     }
-    
+
     @GetMapping("/medias")
     @Operation(description = "Média de idade para cada tipo sanguíneo")
     public ResponseEntity<MediaTipoSanguineoResponseDto> calculoMediaIdadePorTipoSanguineo() {
@@ -82,8 +82,8 @@ public class PacienteController {
         return new ResponseEntity<MediaTipoSanguineoResponseDto>(
                 pacienteService.calculoMediaIdadePorTipoSanguineo(), HttpStatus.OK);
     }
-    
-        @GetMapping("/doadores")
+
+    @GetMapping("/doadores")
     @Operation(description = "Total de doadores para cada tipo sanguíneo")
     public ResponseEntity<DoadoresTipoSanguineoResponseDto> calculoDoadoresPorTipoSanguineo() {
 

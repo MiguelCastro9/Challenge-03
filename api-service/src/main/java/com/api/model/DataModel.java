@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * @author Miguel Castro
  */
 @Entity
-public class CalculoModel implements Serializable {
+public class DataModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +26,10 @@ public class CalculoModel implements Serializable {
 
     private String tipo_sanguineo;
 
-    public CalculoModel() {
+    public DataModel() {
     }
 
-    public CalculoModel(Long id, Integer idade, String genero, Double altura, Double peso, String tipo_sanguineo) {
+    public DataModel(Long id, Integer idade, String genero, Double altura, Double peso, String tipo_sanguineo) {
         this.id = id;
         this.idade = idade;
         this.genero = genero;
@@ -88,6 +88,6 @@ public class CalculoModel implements Serializable {
 
     @Override
     public String toString() {
-        return "CalculoModel{" + "id=" + id + ", idade=" + idade + ", genero=" + genero + ", altura=" + altura + ", peso=" + peso + ", tipo_sanguineo=" + tipo_sanguineo + '}';
+        return "DataModel{" + "id=" + id + ", idade=" + idade + ", genero=" + genero + ", altura=" + altura + ", peso=" + peso + ", tipo_sanguineo=" + tipo_sanguineo + '}';
     }
 }

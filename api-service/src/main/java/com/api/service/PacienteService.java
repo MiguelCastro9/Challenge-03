@@ -7,7 +7,7 @@ import com.api.dto.PercentualObesosResponseDto;
 import com.api.enums.GeneroEnum;
 import com.api.enums.TipoSanguineoEnum;
 import com.api.exception.MensagemCustomException;
-import com.api.model.CalculoModel;
+import com.api.model.DataModel;
 import com.api.model.PacienteModel;
 import com.api.repository.PacienteRepository;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.api.repository.CalculoRepository;
+import com.api.repository.DataRepository;
 
 /**
  *
@@ -29,7 +29,7 @@ public class PacienteService {
     PacienteRepository pacienteRepository;
 
     @Autowired
-    CalculoRepository imcRepository;
+    DataRepository imcRepository;
 
     public List<PacienteModel> listar() {
 
@@ -42,91 +42,91 @@ public class PacienteService {
         return pacienteRepository.save(pacienteModel);
     }
 
-    public List<FaixaEtariaIMCResponseDto> calculoPorfaixaEtariaIMC() {
+    public List<FaixaEtariaIMCResponseDto> calculoIMCPorfaixaEtaria() {
 
-        List<CalculoModel> imcs = new ArrayList<>();
-        imcs = imcRepository.getData();
-        HashMap<String, Double> imcsMedio = new HashMap<>();
+        List<DataModel> data = new ArrayList<>();
+        data = imcRepository.getData();
+        HashMap<String, Double> imcs = new HashMap<>();
 
-        for (int i = 0; i < imcs.size(); i++) {
+        for (int i = 0; i < data.size(); i++) {
 
-            Integer idade = imcs.get(i).getIdade();
-            Double peso = imcs.get(i).getPeso();
-            Double altura = imcs.get(i).getAltura();
+            Integer idade = data.get(i).getIdade();
+            Double peso = data.get(i).getPeso();
+            Double altura = data.get(i).getAltura();
             Double imc = peso / (altura * altura);
 
             if (idade >= 0 && idade <= 10) {
-                if (imcsMedio.containsKey("Faixa etária [0 - 10]")) {
-                    imcsMedio.put("Faixa etária [0 - 10]", imcsMedio.get("Faixa etária [0 - 10]") + imc);
+                if (imcs.containsKey("Faixa etária [0 - 10]")) {
+                    imcs.put("Faixa etária [0 - 10]", imcs.get("Faixa etária [0 - 10]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [0 - 10]", imc);
+                    imcs.put("Faixa etária [0 - 10]", imc);
                 }
             }
             if (idade >= 11 && idade <= 20) {
-                if (imcsMedio.containsKey("Faixa etária [11 - 20]")) {
-                    imcsMedio.put("Faixa etária [11 - 20]", imcsMedio.get("Faixa etária [11 - 20]") + imc);
+                if (imcs.containsKey("Faixa etária [11 - 20]")) {
+                    imcs.put("Faixa etária [11 - 20]", imcs.get("Faixa etária [11 - 20]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [11 - 20]", imc);
+                    imcs.put("Faixa etária [11 - 20]", imc);
                 }
             }
             if (idade >= 21 && idade <= 30) {
-                if (imcsMedio.containsKey("Faixa etária [21 - 30]")) {
-                    imcsMedio.put("Faixa etária [21 - 30]", imcsMedio.get("Faixa etária [21 - 30]") + imc);
+                if (imcs.containsKey("Faixa etária [21 - 30]")) {
+                    imcs.put("Faixa etária [21 - 30]", imcs.get("Faixa etária [21 - 30]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [21 - 30]", imc);
+                    imcs.put("Faixa etária [21 - 30]", imc);
                 }
             }
             if (idade >= 31 && idade <= 40) {
-                if (imcsMedio.containsKey("Faixa etária [31 - 40]")) {
-                    imcsMedio.put("Faixa etária [31 - 40]", imcsMedio.get("Faixa etária [31 - 40]") + imc);
+                if (imcs.containsKey("Faixa etária [31 - 40]")) {
+                    imcs.put("Faixa etária [31 - 40]", imcs.get("Faixa etária [31 - 40]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [31 - 40]", imc);
+                    imcs.put("Faixa etária [31 - 40]", imc);
                 }
             }
             if (idade >= 41 && idade <= 50) {
-                if (imcsMedio.containsKey("Faixa etária [41 - 50]")) {
-                    imcsMedio.put("Faixa etária [41 - 50]", imcsMedio.get("Faixa etária [41 - 50]") + imc);
+                if (imcs.containsKey("Faixa etária [41 - 50]")) {
+                    imcs.put("Faixa etária [41 - 50]", imcs.get("Faixa etária [41 - 50]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [41 - 50]", imc);
+                    imcs.put("Faixa etária [41 - 50]", imc);
                 }
             }
             if (idade >= 51 && idade <= 60) {
-                if (imcsMedio.containsKey("Faixa etária [51 - 60]")) {
-                    imcsMedio.put("Faixa etária [51 - 60]", imcsMedio.get("Faixa etária [51 - 60]") + imc);
+                if (imcs.containsKey("Faixa etária [51 - 60]")) {
+                    imcs.put("Faixa etária [51 - 60]", imcs.get("Faixa etária [51 - 60]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [51 - 60]", imc);
+                    imcs.put("Faixa etária [51 - 60]", imc);
                 }
             }
             if (idade >= 61 && idade <= 70) {
-                if (imcsMedio.containsKey("Faixa etária [61 - 70]")) {
-                    imcsMedio.put("Faixa etária [61 - 70]", imcsMedio.get("Faixa etária [61 - 70]") + imc);
+                if (imcs.containsKey("Faixa etária [61 - 70]")) {
+                    imcs.put("Faixa etária [61 - 70]", imcs.get("Faixa etária [61 - 70]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [61 - 70]", imc);
+                    imcs.put("Faixa etária [61 - 70]", imc);
                 }
             }
             if (idade >= 71 && idade <= 80) {
-                if (imcsMedio.containsKey("Faixa etária [71 - 80]")) {
-                    imcsMedio.put("Faixa etária [71 - 80]", imcsMedio.get("Faixa etária [71 - 80]") + imc);
+                if (imcs.containsKey("Faixa etária [71 - 80]")) {
+                    imcs.put("Faixa etária [71 - 80]", imcs.get("Faixa etária [71 - 80]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [71 - 80]", imc);
+                    imcs.put("Faixa etária [71 - 80]", imc);
                 }
             }
             if (idade >= 81 && idade <= 90) {
-                if (imcsMedio.containsKey("Faixa etária [81 - 90]")) {
-                    imcsMedio.put("Faixa etária [81 - 90]", imcsMedio.get("Faixa etária [81 - 90]") + imc);
+                if (imcs.containsKey("Faixa etária [81 - 90]")) {
+                    imcs.put("Faixa etária [81 - 90]", imcs.get("Faixa etária [81 - 90]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [81 - 90]", imc);
+                    imcs.put("Faixa etária [81 - 90]", imc);
                 }
             }
             if (idade >= 91 && idade <= 100) {
-                if (imcsMedio.containsKey("Faixa etária [91 - 100]")) {
-                    imcsMedio.put("Faixa etária [91 - 100]", imcsMedio.get("Faixa etária [91 - 100]") + imc);
+                if (imcs.containsKey("Faixa etária [91 - 100]")) {
+                    imcs.put("Faixa etária [91 - 100]", imcs.get("Faixa etária [91 - 100]") + imc);
                 } else {
-                    imcsMedio.put("Faixa etária [91 - 100]", imc);
+                    imcs.put("Faixa etária [91 - 100]", imc);
                 }
             }
         }
-        List<FaixaEtariaIMCResponseDto> faixasEtarias = imcsMedio.entrySet().stream()
+        List<FaixaEtariaIMCResponseDto> faixasEtarias = imcs.entrySet().stream()
                 .map(entry -> new FaixaEtariaIMCResponseDto(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
 
@@ -134,61 +134,61 @@ public class PacienteService {
     }
 
     public PercentualObesosResponseDto calculoPercentualObesos() {
-        
-        List<CalculoModel> imcs = imcRepository.getData();
-        
-        Long qtdMasculinos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.MASCULINO.name())).count();
-        Long qtdFemininos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.FEMININO.name())).count();
-        Long qtdObesosMasculinos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.MASCULINO.name()) && imc.getPeso() / (imc.getAltura() * imc.getAltura()) > 30).count();
-        Long qtdObesosFemininos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.FEMININO.name()) && imc.getPeso() / (imc.getAltura() * imc.getAltura()) > 30).count();
+
+        List<DataModel> data = imcRepository.getData();
+
+        Long qtdMasculinos = data.stream().filter(dt -> dt.getGenero().equalsIgnoreCase(GeneroEnum.MASCULINO.name())).count();
+        Long qtdFemininos = data.stream().filter(dt -> dt.getGenero().equalsIgnoreCase(GeneroEnum.FEMININO.name())).count();
+        Long qtdObesosMasculinos = data.stream().filter(dt -> dt.getGenero().equalsIgnoreCase(GeneroEnum.MASCULINO.name()) && dt.getPeso() / (dt.getAltura() * dt.getAltura()) > 30).count();
+        Long qtdObesosFemininos = data.stream().filter(dt -> dt.getGenero().equalsIgnoreCase(GeneroEnum.FEMININO.name()) && dt.getPeso() / (dt.getAltura() * dt.getAltura()) > 30).count();
         Double percentualObesosMasculinos = qtdMasculinos > 0 ? 100.0 * qtdObesosMasculinos / qtdMasculinos : 0;
         Double percentualObesosFemininos = qtdFemininos > 0 ? 100.0 * qtdObesosFemininos / qtdFemininos : 0;
-        
+
         return new PercentualObesosResponseDto(percentualObesosMasculinos, percentualObesosFemininos);
     }
 
     public MediaTipoSanguineoResponseDto calculoMediaIdadePorTipoSanguineo() {
 
-        List<CalculoModel> imcs = imcRepository.getData();
+        List<DataModel> data = imcRepository.getData();
 
-        Double mediaAPositivo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_POSITIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaAPositivo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_POSITIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
-        Double mediaANegativo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_NEGATIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaANegativo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_NEGATIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
-        Double mediaBPositivo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_POSITIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaBPositivo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_POSITIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
-        Double mediaBNegativo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_NEGATIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaBNegativo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_NEGATIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
-        Double mediaOPositivo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_POSITIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaOPositivo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_POSITIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
-        Double mediaONegativo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_NEGATIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaONegativo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_NEGATIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
-        Double mediaABPositivo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_POSITIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaABPositivo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_POSITIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
-        Double mediaABNegativo = imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_NEGATIVO.name()))
-                .mapToDouble(CalculoModel::getIdade)
+        Double mediaABNegativo = data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_NEGATIVO.name()))
+                .mapToDouble(DataModel::getIdade)
                 .average().orElse(0.0);
 
         return new MediaTipoSanguineoResponseDto(mediaAPositivo, mediaANegativo, mediaBPositivo,
@@ -197,56 +197,56 @@ public class PacienteService {
 
     public DoadoresTipoSanguineoResponseDto calculoDoadoresPorTipoSanguineo() {
 
-        List<CalculoModel> imcs = imcRepository.getData();
+        List<DataModel> data = imcRepository.getData();
 
-        Integer totalDoadoresAPositivo = (int) imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_POSITIVO.name()))
-                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+        Integer totalDoadoresAPositivo = (int) data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_POSITIVO.name()))
+                .filter(dt -> dt.getIdade() >= 16 && dt.getIdade() <= 69 && dt.getPeso() >= 50)
                 .count();
 
-        Integer totalDoadoresANegativo = (int) imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_NEGATIVO.name()))
-                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+        Integer totalDoadoresANegativo = (int) data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_NEGATIVO.name()))
+                .filter(dt -> dt.getIdade() >= 16 && dt.getIdade() <= 69 && dt.getPeso() >= 50)
                 .count();
 
-        Integer totalDoadoresBPositivo = (int) imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_POSITIVO.name()))
-                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+        Integer totalDoadoresBPositivo = (int) data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_POSITIVO.name()))
+                .filter(dt -> dt.getIdade() >= 16 && dt.getIdade() <= 69 && dt.getPeso() >= 50)
                 .count();
 
-        Integer totalDoadoresBNegativo = (int) imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_NEGATIVO.name()))
-                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+        Integer totalDoadoresBNegativo = (int) data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_NEGATIVO.name()))
+                .filter(dt -> dt.getIdade() >= 16 && dt.getIdade() <= 69 && dt.getPeso() >= 50)
                 .count();
 
-        Integer totalDoadoresOPositivo = (int) imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_POSITIVO.name()))
-                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+        Integer totalDoadoresOPositivo = (int) data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_POSITIVO.name()))
+                .filter(dt -> dt.getIdade() >= 16 && dt.getIdade() <= 69 && dt.getPeso() >= 50)
                 .count();
 
-        Integer totalDoadoresONegativo = (int) imcs.stream()
-                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_NEGATIVO.name()))
-                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+        Integer totalDoadoresONegativo = (int) data.stream()
+                .filter(dt -> dt.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_NEGATIVO.name()))
+                .filter(dt -> dt.getIdade() >= 16 && dt.getIdade() <= 69 && dt.getPeso() >= 50)
                 .count();
 
-        Integer totalDoadoresABPositivo = (int) imcs.stream()
+        Integer totalDoadoresABPositivo = (int) data.stream()
                 .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_POSITIVO.name()))
                 .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
                 .count();
 
-        Integer totalDoadoresABNegativo = (int) imcs.stream()
+        Integer totalDoadoresABNegativo = (int) data.stream()
                 .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_NEGATIVO.name()))
                 .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
                 .count();
 
         return new DoadoresTipoSanguineoResponseDto(
-                "[A+] pode doar para [AB+ e A+] e pode receber de [A+, A-, O+ e O-]", totalDoadoresAPositivo, 
+                "[A+] pode doar para [AB+ e A+] e pode receber de [A+, A-, O+ e O-]", totalDoadoresAPositivo,
                 "[A-] pode doar para [A+, A-, AB+ e AB-] e pode receber de [A- e O-]", totalDoadoresANegativo,
-                "[B+] pode doar para [B+ e AB+] e pode receber de [B+, B-, O+ e O-]", totalDoadoresBPositivo, 
-                "[B-] pode doar para [B+, B-, AB+ e AB-] e pode receber de [B- e O-]", totalDoadoresBNegativo, 
+                "[B+] pode doar para [B+ e AB+] e pode receber de [B+, B-, O+ e O-]", totalDoadoresBPositivo,
+                "[B-] pode doar para [B+, B-, AB+ e AB-] e pode receber de [B- e O-]", totalDoadoresBNegativo,
                 "[O+] pode doar para [A+, B+, O+ e AB+] e pode receber de [O+ e O-]", totalDoadoresOPositivo,
-                "[O-] pode doar para [A+, B+, O+, AB+, A-, B-, O- e AB-] e pode receber de [O-]", totalDoadoresONegativo, 
-                "[AB+] pode doar para [AB+] e pode receber de [A+, B+, O+, AB+, A-, B-, O- e AB-]", totalDoadoresABPositivo, 
+                "[O-] pode doar para [A+, B+, O+, AB+, A-, B-, O- e AB-] e pode receber de [O-]", totalDoadoresONegativo,
+                "[AB+] pode doar para [AB+] e pode receber de [A+, B+, O+, AB+, A-, B-, O- e AB-]", totalDoadoresABPositivo,
                 "[AB-] pode doar para [AB+ e AB-] e pode receber de [A-, B-, O- e AB-]", totalDoadoresABNegativo);
     }
 

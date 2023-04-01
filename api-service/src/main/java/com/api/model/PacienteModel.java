@@ -42,7 +42,7 @@ public class PacienteModel implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date data_nascimento;
-    
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private GeneroEnum genero;
