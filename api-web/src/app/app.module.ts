@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MenuComponent } from './menu/menu.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
     })
