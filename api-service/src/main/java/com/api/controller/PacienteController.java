@@ -1,5 +1,6 @@
 package com.api.controller;
 
+import com.api.dto.DoadoresTipoSanguineoResponseDto;
 import com.api.dto.FaixaEtariaIMCResponseDto;
 import com.api.dto.MediaTipoSanguineoResponseDto;
 import com.api.dto.PacienteRequestDto;
@@ -80,6 +81,14 @@ public class PacienteController {
 
         return new ResponseEntity<MediaTipoSanguineoResponseDto>(
                 pacienteService.calculoMediaIdadePorTipoSanguineo(), HttpStatus.OK);
+    }
+    
+        @GetMapping("/doadores")
+    @Operation(description = "Total de doadores para cada tipo sanguíneo")
+    public ResponseEntity<DoadoresTipoSanguineoResponseDto> calculoDoadoresPorTipoSanguineo() {
+
+        return new ResponseEntity<DoadoresTipoSanguineoResponseDto>(
+                pacienteService.calculoDoadoresPorTipoSanguineo(), HttpStatus.OK);
     }
 
     @PostMapping

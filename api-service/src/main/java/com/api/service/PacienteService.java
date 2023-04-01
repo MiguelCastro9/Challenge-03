@@ -1,5 +1,6 @@
 package com.api.service;
 
+import com.api.dto.DoadoresTipoSanguineoResponseDto;
 import com.api.dto.FaixaEtariaIMCResponseDto;
 import com.api.dto.MediaTipoSanguineoResponseDto;
 import com.api.dto.PercentualObesosResponseDto;
@@ -168,6 +169,7 @@ public class PacienteService {
     }
 
     public MediaTipoSanguineoResponseDto calculoMediaIdadePorTipoSanguineo() {
+
         List<CalculoModel> imcs = imcRepository.getData();
 
         Double mediaAPositivo = imcs.stream()
@@ -212,6 +214,55 @@ public class PacienteService {
 
         return new MediaTipoSanguineoResponseDto(mediaAPositivo, mediaANegativo, mediaBPositivo,
                 mediaBNegativo, mediaOPositivo, mediaONegativo, mediaABPositivo, mediaABNegativo);
+    }
+
+    public DoadoresTipoSanguineoResponseDto calculoDoadoresPorTipoSanguineo() {
+
+        List<CalculoModel> imcs = imcRepository.getData();
+
+        Integer totalDoadoresAPositivo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_POSITIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        Integer totalDoadoresANegativo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_NEGATIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        Integer totalDoadoresBPositivo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_POSITIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        Integer totalDoadoresBNegativo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_NEGATIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        Integer totalDoadoresOPositivo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_POSITIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        Integer totalDoadoresONegativo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_NEGATIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        Integer totalDoadoresABPositivo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_POSITIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        Integer totalDoadoresABNegativo = (int) imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_NEGATIVO.name()))
+                .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
+                .count();
+
+        return new DoadoresTipoSanguineoResponseDto(totalDoadoresAPositivo, totalDoadoresANegativo,
+                totalDoadoresBPositivo, totalDoadoresBNegativo, totalDoadoresOPositivo,
+                totalDoadoresONegativo, totalDoadoresABPositivo, totalDoadoresABNegativo);
     }
 
     private void verificaValorExistente(PacienteModel pacienteModel) {
