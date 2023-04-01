@@ -1,7 +1,9 @@
 package com.api.service;
 
 import com.api.dto.FaixaEtariaIMCResponseDto;
+import com.api.dto.MediaTipoSanguineoResponseDto;
 import com.api.dto.PercentualObesosResponseDto;
+import com.api.enums.TipoSanguineoEnum;
 import com.api.exception.MensagemCustomException;
 import com.api.model.CalculoModel;
 import com.api.model.PacienteModel;
@@ -163,6 +165,53 @@ public class PacienteService {
         PercentualObesosResponseDto percentuais = new PercentualObesosResponseDto(percentualObesosMasculinos, percentualObesosFemininos);
 
         return percentuais;
+    }
+
+    public MediaTipoSanguineoResponseDto calculoMediaIdadePorTipoSanguineo() {
+        List<CalculoModel> imcs = imcRepository.getData();
+
+        Double mediaAPositivo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_POSITIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        Double mediaANegativo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_NEGATIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        Double mediaBPositivo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_POSITIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        Double mediaBNegativo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.B_NEGATIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        Double mediaOPositivo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_POSITIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        Double mediaONegativo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.O_NEGATIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        Double mediaABPositivo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_POSITIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        Double mediaABNegativo = imcs.stream()
+                .filter(imc -> imc.getTipo_sanguineo().equalsIgnoreCase(TipoSanguineoEnum.A_B_NEGATIVO.name()))
+                .mapToDouble(CalculoModel::getIdade)
+                .average().orElse(0.0);
+
+        return new MediaTipoSanguineoResponseDto(mediaAPositivo, mediaANegativo, mediaBPositivo,
+                mediaBNegativo, mediaOPositivo, mediaONegativo, mediaABPositivo, mediaABNegativo);
     }
 
     private void verificaValorExistente(PacienteModel pacienteModel) {

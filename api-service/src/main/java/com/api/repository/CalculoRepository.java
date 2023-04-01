@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CalculoRepository extends JpaRepository<CalculoModel, Long> {
 
-    @Query(value = "SELECT p.id, YEAR(CURRENT_DATE()) - YEAR(p.data_nascimento) AS idade, p.genero, f.altura, f.peso "
+    @Query(value = "SELECT p.id, YEAR(CURRENT_DATE()) - YEAR(p.data_nascimento) AS idade, p.genero, f.altura, f.peso, f.tipo_sanguineo "
             + "FROM Paciente p "
             + "INNER JOIN Fisico f "
             + "ON "

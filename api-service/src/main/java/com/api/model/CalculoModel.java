@@ -10,29 +10,32 @@ import javax.persistence.Id;
  */
 @Entity
 public class CalculoModel implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
     private Long id;
 
     private Integer idade;
-    
+
     private String genero;
 
     private Double altura;
 
     private Double peso;
 
+    private String tipo_sanguineo;
+
     public CalculoModel() {
     }
 
-    public CalculoModel(Long id, Integer idade, String genero, Double altura, Double peso) {
+    public CalculoModel(Long id, Integer idade, String genero, Double altura, Double peso, String tipo_sanguineo) {
         this.id = id;
         this.idade = idade;
         this.genero = genero;
         this.altura = altura;
         this.peso = peso;
+        this.tipo_sanguineo = tipo_sanguineo;
     }
 
     public Long getId() {
@@ -43,7 +46,7 @@ public class CalculoModel implements Serializable {
         this.id = id;
     }
 
-    public Integer getIdade(){
+    public Integer getIdade() {
         return idade;
     }
 
@@ -58,7 +61,7 @@ public class CalculoModel implements Serializable {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    
+
     public Double getAltura() {
         return altura;
     }
@@ -75,8 +78,16 @@ public class CalculoModel implements Serializable {
         this.peso = peso;
     }
 
+    public String getTipo_sanguineo() {
+        return tipo_sanguineo;
+    }
+
+    public void setTipo_sanguineo(String tipo_sanguineo) {
+        this.tipo_sanguineo = tipo_sanguineo;
+    }
+
     @Override
     public String toString() {
-        return "IMCModel{" + "id=" + id + ", idade=" + idade + ", genero=" + genero + ", altura=" + altura + ", peso=" + peso + '}';
+        return "CalculoModel{" + "id=" + id + ", idade=" + idade + ", genero=" + genero + ", altura=" + altura + ", peso=" + peso + ", tipo_sanguineo=" + tipo_sanguineo + '}';
     }
 }
