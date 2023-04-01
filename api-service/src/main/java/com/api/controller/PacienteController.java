@@ -59,7 +59,7 @@ public class PacienteController {
                 enderecoService.totalPacientePorEstado(estado), HttpStatus.OK);
     }
 
-    @GetMapping("/imc")
+    @GetMapping("/imcs")
     @Operation(description = "IMC em faixa etária")
     public ResponseEntity<List<FaixaEtariaIMCResponseDto>> calculoIMCPorfaixaEtaria() {
 

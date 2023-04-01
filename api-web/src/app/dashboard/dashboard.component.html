@@ -1,1 +1,405 @@
 <app-menu></app-menu>
+<br>
+<div class="container">
+   <div class="row row-cols-1 row-cols-md-2">
+      <div class="col mb-4">
+         <div class="card h-100">
+            <div class="card-body">
+               <h5 class="card-title">IMCS</h5>
+               <p class="card-text">IMCS médios por faixa etária de idade de 10 em 10 anos.</p>
+               <hr>
+               <div class="container">
+                  <div class="row row-cols-1 row-cols-md-2">
+                     <div *ngFor="let item of listaImcsPacientes">
+                        <div class="col mb-4">
+                           <div class="width-imcs">
+                              <p class="card-text text-center">{{item.faixaEtaria}}</p>
+                              <p class="card-text text-center"><strong>{{item.valorFaixaEtaria.toFixed(2)}}%</strong></p>
+                           </div>
+                        </div>
+                        <br>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+            </div>
+         </div>
+      </div>
+      <div class="col mb-4">
+         <div class="card h-100">
+            <div class="card-body">
+               <h5 class="card-title">Obesos</h5>
+               <p class="card-text">Percentual de obesos entre os gêneros masculinos e femininos.</p>
+               <hr>
+               <div class="container">
+                  <div class="d-flex align-items-center">
+                     <div class="width-obesos">
+                        <p class="card-text text-center">Masculinos</p>
+                        <p class="card-text text-center"><strong>{{obesosPacientes?.percentualMasculino.toFixed(2)}}%</strong></p>
+                     </div>
+                     <div class="width-obesos">
+                        <p class="card-text text-center">Femininos</p>
+                        <p class="card-text text-center"><strong>{{obesosPacientes?.percentualFeminino.toFixed(2)}}%</strong></p>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+            </div>
+         </div>
+      </div>
+      <div class="col mb-4">
+         <div class="card h-100">
+            <div class="card-body">
+               <h5 class="card-title">Médias</h5>
+               <p class="card-text">Média de idade para cada tipo sanguíneo.</p>
+               <hr>
+               <div class="container">
+                  <div class="d-flex align-items-center">
+                     <div class="width-medias">
+                        <p class="card-text text-center">A+</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaAPositivo.toFixed(2)}}%</strong></p>
+                     </div>
+                     <div class="width-medias">
+                        <p class="card-text text-center">A-</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaANegativo.toFixed(2)}}%</strong></p>
+                     </div>
+                     <div class="width-medias">
+                        <p class="card-text text-center">B+</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaBPositivo.toFixed(2)}}%</strong></p>
+                     </div>
+                     <div class="width-medias">
+                        <p class="card-text text-center">B-</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaBNegativo.toFixed(2)}}%</strong></p>
+                     </div>
+                  </div>
+               </div>
+               <br>
+               <div class="container">
+                  <div class="d-flex align-items-center">
+                     <div class="width-medias">
+                        <p class="card-text text-center">O+</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaOPositivo.toFixed(2)}}%</strong></p>
+                     </div>
+                     <div class="width-medias">
+                        <p class="card-text text-center">0-</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaONegativo.toFixed(2)}}%</strong></p>
+                     </div>
+                     <div class="width-medias">
+                        <p class="card-text text-center">AB+</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaABPositivo.toFixed(2)}}%</strong></p>
+                     </div>
+                     <div class="width-medias">
+                        <p class="card-text text-center">AB-</p>
+                        <p class="card-text text-center"><strong>{{mediasPacientes?.mediaABNegativo.toFixed(2)}}%</strong></p>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+            </div>
+         </div>
+      </div>
+      <div class="col mb-4">
+         <div class="card h-100">
+            <div class="card-body">
+               <h5 class="card-title">Doadores</h5>
+               <p class="card-text">Quantidade de doadores para cada tipo sanguíneo.</p>
+               <hr>
+               <div class="container">
+                  <div class="d-flex align-items-center">
+                     <div class="width-doadores">
+                        <p class="card-text text-center">A+</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresAPositivo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel1">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresAPositivo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="width-doadores">
+                        <p class="card-text text-center">A-</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresANegativo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel2">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresANegativo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="width-doadores">
+                        <p class="card-text text-center">B+</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresBPositivo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel3">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresBPositivo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="width-doadores">
+                        <p class="card-text text-center">B-</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal4">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresBNegativo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel4">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresBNegativo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <div class="d-flex align-items-center">
+                     <div class="width-doadores">
+                        <p class="card-text text-center">O+</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal5">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresOPositivo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel5">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresOPositivo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="width-doadores">
+                        <p class="card-text text-center">O-</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal6">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresONegativo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel6">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresONegativo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="width-doadores">
+                        <p class="card-text text-center">AB+</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal7">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresABPositivo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel7" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel7">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresABPositivo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="width-doadores">
+                        <p class="card-text text-center">AB-</p>
+                        <!-- Button trigger modal -->
+                        <div class="d-flex justify-content-center">
+                           <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal8">
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo < 100" class="card-text text-center"><strong>{{doadoresPacientes?.totalDoadoresABNegativo}}</strong></p>
+                              <p *ngIf="doadoresPacientes?.totalDoadoresAPositivo > 100" class="card-text text-center"><strong>100+</strong></p>
+                           </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel8" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel8">Descrição</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {{doadoresPacientes?.descDoadoresABNegativo}}
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="jumbotron jumbotron-fluid">
+   <div class="container">
+      <form>
+         <div class="row">
+            <div class="col">
+               <div class="form-group">
+                  <label for="estado">Total de candidatos de cada estado do Brasil:</label>
+                  <select id="estado" name="estado" [(ngModel)]="estado" class="form-control" aria-describedby="button-addon">
+                  <option selected>--</option>
+                  <option>Acre</option>
+                  <option>Alagoas</option>
+                  <option>Amapá</option>
+                  <option>Amazonas</option>
+                  <option>Bahia</option>
+                  <option>Ceará</option>
+                  <option>Distrito Federal</option>
+                  <option>Espírito Santo</option>
+                  <option>Goiás</option>
+                  <option>Maranhão</option>
+                  <option>Mato Grosso</option>
+                  <option>Mato Grosso do Sul</option>
+                  <option>Minas Gerais</option>
+                  <option>Pará</option>
+                  <option>Paraíba</option>
+                  <option>Paraná</option>
+                  <option>Pernambuco</option>
+                  <option>Piauí</option>
+                  <option>Rio de Janeiro</option>
+                  <option>Rio Grande do Norte</option>
+                  <option>Rio Grande do Sul</option>
+                  <option>Rondônia</option>
+                  <option>Roraima</option>
+                  <option>Santa Catarina</option>
+                  <option>São Paulo</option>
+                  <option>Sergipe</option>
+                  <option>Tocantins</option>
+                  <option>Estrangeiro</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary" (click)="estados(estado);" type="button" id="button-addon">Pesquisar</button>
+               </div>
+            </div>
+            <div class="col">
+               <p class="text-lead text-center">Total:</p>
+               <h1 class="text-muted text-center" *ngIf="totalEstadosPacientes != null">{{totalEstadosPacientes}}</h1>
+               <h1 class="text-muted text-center" *ngIf="totalEstadosPacientes == null">--</h1>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<footer class="footer">
+   <div class="text-muted text-center">&copy; Miguel Castro - 2023</div>
+</footer>
