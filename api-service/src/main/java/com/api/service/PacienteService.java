@@ -239,9 +239,15 @@ public class PacienteService {
                 .filter(imc -> imc.getIdade() >= 16 && imc.getIdade() <= 69 && imc.getPeso() >= 50)
                 .count();
 
-        return new DoadoresTipoSanguineoResponseDto(totalDoadoresAPositivo, totalDoadoresANegativo,
-                totalDoadoresBPositivo, totalDoadoresBNegativo, totalDoadoresOPositivo,
-                totalDoadoresONegativo, totalDoadoresABPositivo, totalDoadoresABNegativo);
+        return new DoadoresTipoSanguineoResponseDto(
+                "[A+] pode doar para [AB+ e A+] e pode receber de [A+, A-, O+ e O-]", totalDoadoresAPositivo, 
+                "[A-] pode doar para [A+, A-, AB+ e AB-] e pode receber de [A- e O-]", totalDoadoresANegativo,
+                "[B+] pode doar para [B+ e AB+] e pode receber de [B+, B-, O+ e O-]", totalDoadoresBPositivo, 
+                "[B-] pode doar para [B+, B-, AB+ e AB-] e pode receber de [B- e O-]", totalDoadoresBNegativo, 
+                "[O+] pode doar para [A+, B+, O+ e AB+] e pode receber de [O+ e O-]", totalDoadoresOPositivo,
+                "[O-] pode doar para [A+, B+, O+, AB+, A-, B-, O- e AB-] e pode receber de [O-]", totalDoadoresONegativo, 
+                "[AB+] pode doar para [AB+] e pode receber de [A+, B+, O+, AB+, A-, B-, O- e AB-]", totalDoadoresABPositivo, 
+                "[AB-] pode doar para [AB+ e AB-] e pode receber de [A-, B-, O- e AB-]", totalDoadoresABNegativo);
     }
 
     private void verificaValorExistente(PacienteModel pacienteModel) {
