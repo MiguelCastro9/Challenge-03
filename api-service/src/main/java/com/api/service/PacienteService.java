@@ -4,6 +4,7 @@ import com.api.dto.DoadoresTipoSanguineoResponseDto;
 import com.api.dto.FaixaEtariaIMCResponseDto;
 import com.api.dto.MediaTipoSanguineoResponseDto;
 import com.api.dto.PercentualObesosResponseDto;
+import com.api.enums.GeneroEnum;
 import com.api.enums.TipoSanguineoEnum;
 import com.api.exception.MensagemCustomException;
 import com.api.model.CalculoModel;
@@ -133,39 +134,17 @@ public class PacienteService {
     }
 
     public PercentualObesosResponseDto calculoPercentualObesos() {
-
-        List<CalculoModel> imcs = new ArrayList<>();
-        imcs = imcRepository.getData();
-        Integer qtdMasculinos = 0;
-        Integer qtdFemininos = 0;
-        Integer qtdObesosMasculinos = 0;
-        Integer qtdObesosFemininos = 0;
-
-        for (int i = 0; i < imcs.size(); i++) {
-
-            Double peso = imcs.get(i).getPeso();
-            Double altura = imcs.get(i).getAltura();
-            Double imc = peso / (altura * altura);
-
-            if (imcs.get(i).getGenero().equalsIgnoreCase("MASCULINO")) {
-                qtdMasculinos++;
-                if (imc > 30) {
-                    qtdObesosMasculinos++;
-                }
-            }
-
-            if (imcs.get(i).getGenero().equalsIgnoreCase("FEMININO")) {
-                qtdFemininos++;
-                if (imc > 30) {
-                    qtdObesosFemininos++;
-                }
-            }
-        }
-        Double percentualObesosMasculinos = 100.0 * qtdObesosMasculinos / qtdMasculinos;
-        Double percentualObesosFemininos = 100.0 * qtdObesosFemininos / qtdFemininos;
-        PercentualObesosResponseDto percentuais = new PercentualObesosResponseDto(percentualObesosMasculinos, percentualObesosFemininos);
-
-        return percentuais;
+        
+        List<CalculoModel> imcs = imcRepository.getData();
+        
+        Long qtdMasculinos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.MASCULINO.name())).count();
+        Long qtdFemininos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.FEMININO.name())).count();
+        Long qtdObesosMasculinos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.MASCULINO.name()) && imc.getPeso() / (imc.getAltura() * imc.getAltura()) > 30).count();
+        Long qtdObesosFemininos = imcs.stream().filter(imc -> imc.getGenero().equalsIgnoreCase(GeneroEnum.FEMININO.name()) && imc.getPeso() / (imc.getAltura() * imc.getAltura()) > 30).count();
+        Double percentualObesosMasculinos = qtdMasculinos > 0 ? 100.0 * qtdObesosMasculinos / qtdMasculinos : 0;
+        Double percentualObesosFemininos = qtdFemininos > 0 ? 100.0 * qtdObesosFemininos / qtdFemininos : 0;
+        
+        return new PercentualObesosResponseDto(percentualObesosMasculinos, percentualObesosFemininos);
     }
 
     public MediaTipoSanguineoResponseDto calculoMediaIdadePorTipoSanguineo() {
