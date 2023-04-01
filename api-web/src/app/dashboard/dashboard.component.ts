@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   obesosPacientes: any;
   mediasPacientes: any;
   doadoresPacientes: any;
-  p = 1;
+  pagina = 1;
 
 
   constructor(private dashboardService: DashboardService) { }

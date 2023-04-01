@@ -400,44 +400,39 @@
       </form>
    </div>
 </div>
-
-
-
-
 <div class="container">
-  <table class="table table-hover table-dark text-center">
-    <thead>
+   <table class="table table-hover table-dark text-center">
+      <thead>
+         <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Data de nascimento</th>
+            <th scope="col">Gênero</th>
+         </tr>
+      </thead>
+      <tbody *ngIf="listaPacientes.length > 0; else noData">
+         <tr *ngFor="let item of listaPacientes | paginate: { itemsPerPage: 5, currentPage: pagina }">
+            <td>{{item.nome}}</td>
+            <td>{{item.cpf}}</td>
+            <td>{{item.data_nascimento | date: 'dd/MM/yyyy'}}</td>
+            <td>{{item.genero.toLowerCase()}}</td>
+         </tr>
+      </tbody>
+   </table>
+   <div class="text-center">
+     <pagination-controls
+       (pageChange)="pagina = $event"
+       previousLabel="Anterior"
+       nextLabel="Próximo">
+     </pagination-controls>
+   </div>
+   <ng-template #noData>
       <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">CPF</th>
-        <th scope="col">Data de nascimento</th>
-        <th scope="col">Gênero</th>
+         <td colspan="4" class="text-center">Sem dados</td>
       </tr>
-    </thead>
-    <tbody *ngIf="listaPacientes.length > 0; else noData">
-      <tr *ngFor="let item of listaPacientes | paginate: { itemsPerPage: 5, currentPage: p }">
-        <td>{{item.nome}}</td>
-        <td>{{item.cpf}}</td>
-        <td>{{item.data_nascimento | date: 'dd/MM/yyyy'}}</td>
-        <td>{{item.genero.toLowerCase()}}</td>
-      </tr>
-    </tbody>
-
-    <div class="text-center">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
-
-    <ng-template #noData>
-      <tr>
-        <td colspan="4" class="text-center">Sem dados</td>
-      </tr>
-    </ng-template>
-
-  </table>
+   </ng-template>
 </div>
-
-
-
+<br><br>
 <footer class="footer">
    <div class="text-muted text-center">&copy; Miguel Castro - 2023</div>
 </footer>
