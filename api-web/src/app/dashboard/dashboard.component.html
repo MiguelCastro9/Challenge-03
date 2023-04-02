@@ -410,21 +410,68 @@
             <th scope="col">Gênero</th>
          </tr>
       </thead>
-      <tbody *ngIf="listaPacientes.length > 0; else noData">
-         <tr *ngFor="let item of listaPacientes | paginate: { itemsPerPage: 5, currentPage: pagina }">
-            <td>{{item.nome}}</td>
-            <td>{{item.cpf}}</td>
-            <td>{{item.data_nascimento | date: 'dd/MM/yyyy'}}</td>
-            <td>{{item.genero.toLowerCase()}}</td>
+      <tbody>
+         <tr *ngFor="let item of listaPacientes | paginate: { itemsPerPage: 5, currentPage: pagina }" data-toggle="modal" data-target="#exampleModal" (click)="detalhes(item.id)">
+         <td>{{item.nome}}</td>
+         <td>{{item.cpf}}</td>
+         <td>{{item.data_nascimento | date: 'dd/MM/yyyy'}}</td>
+         <td>{{item.genero.toLowerCase()}}</td>
          </tr>
       </tbody>
+      <!-- Modal -->
+      <div class="modal fade modal-color" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detalhes do paciente</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body text-left" *ngIf="detalhesPaciente?.length > 0">
+                  <span><strong>Nome:</strong> {{detalhesPaciente[0].nome}}</span>
+                  <br>
+                  <span><strong>CPF:</strong> {{detalhesPaciente[0].cpf}}</span>
+                  <br>
+                  <span><strong>Data de nascimento:</strong> {{detalhesPaciente[0].data_nascimento | date: 'dd/MM/yyyy'}}</span>
+                  <br>
+                  <span><strong>Gênero:</strong> {{detalhesPaciente[0].genero.toLowerCase()}}</span>
+                  <hr>
+                  <span><strong>Rua:</strong> {{detalhesPaciente[0].endereco[0].rua}}</span>
+                  <br>
+                  <span><strong>Número:</strong> {{detalhesPaciente[0].endereco[0].numero}}</span>
+                  <br>
+                  <span><strong>Bairro:</strong> {{detalhesPaciente[0].endereco[0].bairro}}</span>
+                  <br>
+                  <span><strong>Estado:</strong> {{detalhesPaciente[0].endereco[0].estado}}</span>
+                  <br>
+                  <span><strong>Complemento:</strong> {{detalhesPaciente[0].endereco[0].complemento}}</span>
+                  <hr>
+                  <span><strong>E-mail:</strong> {{detalhesPaciente[0].contato[0].email}}</span>
+                  <br>
+                  <span><strong>Tipo de contato:</strong> {{detalhesPaciente[0].contato[0].tipo_contato}}</span>
+                  <br>
+                  <span><strong>Número:</strong> {{detalhesPaciente[0].contato[0].numero}}</span>
+                  <hr>
+                  <span><strong>Altura:</strong> {{detalhesPaciente[0].fisico.altura}}</span>
+                  <br>
+                  <span><strong>Peso:</strong> {{detalhesPaciente[0].fisico.peso}}</span>
+                  <br>
+                  <span><strong>Tipo sanguíneo:</strong> {{detalhesPaciente[0].fisico.tipo_sanguineo.toLowerCase()}}</span>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
+               </div>
+            </div>
+         </div>
+      </div>
    </table>
    <div class="text-center">
-     <pagination-controls
-       (pageChange)="pagina = $event"
-       previousLabel="Anterior"
-       nextLabel="Próximo">
-     </pagination-controls>
+      <pagination-controls
+         (pageChange)="pagina = $event"
+         previousLabel="Anterior"
+         nextLabel="Próximo">
+      </pagination-controls>
    </div>
    <ng-template #noData>
       <tr>

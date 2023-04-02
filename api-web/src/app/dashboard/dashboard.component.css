@@ -13,3 +13,11 @@
 .width-doadores {
   width: 150px;
 }
+
+tbody {
+  cursor: pointer;
+}
+
+.modal-color {
+ color: black;
+}

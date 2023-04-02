@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   mediasPacientes: any;
   doadoresPacientes: any;
   pagina = 1;
+  detalhesPaciente: any;
 
 
   constructor(private dashboardService: DashboardService) { }
@@ -51,5 +52,11 @@ export class DashboardComponent implements OnInit {
 
   doadores() {
     this.dashboardService.doadores().subscribe(dados => this.doadoresPacientes = dados);
+  }
+
+  detalhes(id: number) {
+    this.dashboardService.listar().subscribe(dados => {
+      this.detalhesPaciente = dados.filter(paciente => paciente.id === id);
+    });
   }
 }
