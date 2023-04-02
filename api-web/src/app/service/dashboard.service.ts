@@ -17,8 +17,6 @@ export class DashboardService {
   }
 
   estados(estado: string) {
-    console.log(estado);
-
     return this.http.get<number>(this.api_url + '/' + estado);
   }
 
