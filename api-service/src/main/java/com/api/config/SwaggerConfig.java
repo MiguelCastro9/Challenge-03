@@ -19,6 +19,6 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("API Doação de Sangue")
                         .version("v1")
-                        .description("Study Challenge"));
+                        .description("Study Challenge 02"));
     }
 }
